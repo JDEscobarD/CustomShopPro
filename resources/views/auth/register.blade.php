@@ -8,7 +8,7 @@
         <form action="{{ route('register') }}" method="POST">
             @csrf
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="mb-3">
@@ -165,7 +165,14 @@
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-primary px-5 mt-4">Registrar</button>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="d-flex flex-column">
+                        <button type="submit" class="btn btn-primary px-5 mt-4">Registrar</button>
+                        <a href="{{ route('dashboard') }}" class="btn btn-link px-5 mt-4">Cancelar registro</a>
+                    </div>
+                </div>
+            </div>
         </form>
     </div>
 </body>
