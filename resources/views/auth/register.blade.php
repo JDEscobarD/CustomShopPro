@@ -4,8 +4,15 @@
 
 <body>
     <div class="container mt-5">
-        <h2 class="mb-4 fw-bold">Formulario de Registro de Usuario</h2>
-        <form action="{{ route('register') }}" method="POST">
+        <div class="row">
+            <div class="col-lg-6">
+                <h2 class="fw-bold text-black-50 my-5">Formulario de Registro de Usuario</h2>
+            </div>
+            <div class="col-lg-6 text-center">
+                <img src="{{ asset('assets/media/images/CUSTOMSHOP-PRO-logo.svg') }}" alt="CustomShop PRO" class="my-5">
+            </div>
+        </div>
+        <form action="{{ route('register') }}" method="POST" class="pb-5">
             @csrf
             <div class="row">
                 <div class="col-lg-6">

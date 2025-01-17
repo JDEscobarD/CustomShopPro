@@ -49,6 +49,7 @@
         </section>
         <section class="user-options">
             <span class="name-user">Administrador</span>
+            <a href="#" class="item-aside">Usuarios<span class="icon-user users"></span></a>
             <!-- Formulario para cerrar sesión -->
             <form action="" method="POST">
                 @csrf
