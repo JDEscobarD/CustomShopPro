@@ -30,13 +30,29 @@ class RegisteredUserController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $request->validate([
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'nombreUs' => ['required', 'string', 'max:255'],
+            'apellidosUs' => ['required', 'string', 'max:255'],
+            'tipoDoc' => ['required', 'exists:tipo_documento,id'],
+            'numDocu' => ['required', 'string', 'unique:users,numDocu'],
+            'departamento_id' => ['required', 'exists:departamentos,id'],
+            'ciudad_id' => ['required', 'exists:ciudades,id'],
+            'direccion' => ['required', 'string', 'max:255'],
+            'rol_id' => ['required', 'exists:roles,id'],
+            'telefono' => ['required', 'string', 'max:15'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
-            'name' => $request->name,
+            'nombreUs' => $request->nombreUs,
+            'apellidosUs' => $request->apellidosUs,
+            'tipoDoc' => $request->tipoDoc,
+            'numDocu' => $request->numDocu,
+            'departamento_id' => $request->departamento_id,
+            'ciudad_id' => $request->ciudad_id,
+            'direccion' => $request->direccion,
+            'rol_id' => $request->rol_id,
+            'telefono' => $request->telefono,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
@@ -45,6 +61,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        return redirect()->route('dashboard');
     }
 }

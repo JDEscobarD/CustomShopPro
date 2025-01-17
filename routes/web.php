@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use Illuminate\Support\Facades\Route;
 use Pest\Support\View;
 
@@ -14,8 +15,9 @@ Route::view('/nueva-categoria', 'dashboard.new-category')->name('new-category');
 Route::view('/historial-pedidos', 'dashboard.history')->name('history');
 Route::view('/metodo-pagos', 'dashboard.payment')->name('payment');
 
-
-
+//Auth
+Route::view('/registro', 'auth.register')->name('register');
+Route::post('/registro', [RegisteredUserController::class, 'store'])->name('register');
 
 
 
