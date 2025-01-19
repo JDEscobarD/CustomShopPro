@@ -7,7 +7,7 @@
             <section class="login">
                 <img src="{{ asset('assets/media/images/CUSTOMSHOP-PRO-logo.svg') }}" alt="CustomShop PRO">
                 <!--Controles de logueo-->
-                <form action="" method="POST">
+                <form action="{{ route('login.authenticate') }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="userInput" class="form-label">Usuario</label>
@@ -29,6 +29,7 @@
                         <a href="#" class="btn btn-link d-block w-100">Olvidé mi contraseña</a>
                     </div>
                 </form>
+
             </section>
         </div>
         <div class="col-lg-6 offset-lg-1 d-none d-lg-block">

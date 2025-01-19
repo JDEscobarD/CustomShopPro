@@ -22,13 +22,22 @@ class AuthenticatedSessionController extends Controller
     /**
      * Handle an incoming authentication request.
      */
-    public function store(LoginRequest $request): RedirectResponse
+    public function store(Request $request)
     {
-        $request->authenticate();
+        // Lógica para autenticar al usuario
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required'],
+        ]);
 
-        $request->session()->regenerate();
+        if (auth()->attempt($credentials)) {
+            $request->session()->regenerate();
+            return redirect()->intended('dashboard'); // Cambia 'dashboard' si tienes otra ruta
+        }
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return back()->withErrors([
+            'email' => 'Las credenciales no coinciden.',
+        ]);
     }
 
     /**
@@ -45,3 +54,4 @@ class AuthenticatedSessionController extends Controller
         return redirect('/');
     }
 }
+

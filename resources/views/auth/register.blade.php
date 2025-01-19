@@ -12,7 +12,7 @@
                 <img src="{{ asset('assets/media/images/CUSTOMSHOP-PRO-logo.svg') }}" alt="CustomShop PRO" class="my-5">
             </div>
         </div>
-        <form action="{{ route('register') }}" method="POST" class="pb-5">
+        <form action="{{ route('register.store') }}" method="POST" class="pb-5">
             @csrf
             <div class="row">
                 <div class="col-lg-6">
@@ -42,12 +42,13 @@
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label for="tipoDoc" class="form-label">Tipo de Documento</label>
-                                <select class="form-select @error('tipoDoc') is-invalid @enderror" id="tipoDoc" name="tipoDoc">
-                                    <option value="1" selected disabled>Seleccione</option>
-                                    <option value="2"></option>
-                                    <!-- Agregar más tipos de documentos si es necesario -->
+                                <select class="form-select @error('tipo_documento_id') is-invalid @enderror" id="tipoDoc" name="tipo_documento_id">
+                                    <option value="" selected disabled>Seleccione...</option>
+                                    @foreach ($tipos_documentos as $tipo)
+                                    <option value="{{ $tipo->id }}">{{ $tipo->tipoDocu }}</option>
+                                    @endforeach
                                 </select>
-                                @error('tipoDoc')
+                                @error('tipo_documento_id')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -68,27 +69,33 @@
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label for="departamentos" class="form-label">Departamento</label>
-                                <select class="form-select @error('departamentos') is-invalid @enderror" id="departamentos" name="departamentos">
-                                    @error('departamentos')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
-                                    <option value="1" selected disabled>Seleccione</option>
-                                    <option value="2"></option>
-                                    <!-- Puedes agregar más opciones según los roles disponibles -->
+                                <select class="form-select @error('departamento_id') is-invalid @enderror" id="departamentos" name="departamento_id">
+                                    <option value="" selected disabled>Seleccione...</option>
+                                    @foreach ($departamentos as $departamento)
+                                    <option value="{{ $departamento->id }}" {{ old('departamento_id') == $departamento->id ? 'selected' : '' }}>
+                                        {{ $departamento->nombre }}
+                                    </option>
+                                    @endforeach
                                 </select>
+                                @error('departamento_id')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label for="ciudades" class="form-label">Ciudad</label>
-                                <select class="form-select @error('ciudades') is-invalid @enderror" id="ciudades" name="ciudades">
-                                    <option value="1" selected disabled>Seleccione</option>
-                                    <option value="2"></option>
-                                    <!-- Puedes agregar más opciones según los roles disponibles -->
+                                <select class="form-select @error('ciudad_id') is-invalid @enderror" id="ciudades" name="ciudad_id">
+                                    <option value="" selected disabled>Seleccione...</option>
+                                    @foreach ($ciudades as $ciudad)
+                                    <option value="{{ $ciudad->id }}" {{ old('ciudad_id') == $ciudad->id ? 'selected' : '' }}>
+                                        {{ $ciudad->nombre }}
+                                    </option>
+                                    @endforeach
                                 </select>
-                                @error('ciudades')
+                                @error('ciudad_id')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -109,12 +116,13 @@
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label for="rol" class="form-label">Rol</label>
-                                <select class="form-select @error('rol') is-invalid @enderror" id="rol" name="rol" value="{{ old('rol') }}">
-                                    <option value="1" selected disabled>Seleccione</option>
-                                    <option value="2"></option>
-                                    <!-- Puedes agregar más opciones según los roles disponibles -->
+                                <select class="form-select @error('rol_id') is-invalid @enderror" id="rol" name="rol_id">
+                                    <option value="" selected disabled>Seleccione...</option>
+                                    @foreach ($roles as $rol)
+                                    <option value="{{ $rol->id }}">{{ $rol->rol }}</option>
+                                    @endforeach
                                 </select>
-                                @error('rol')
+                                @error('rol_id')
                                 <div class="invalid-feedback">
                                     {{ $message }}
                                 </div>
@@ -143,9 +151,6 @@
                                 @enderror
                             </div>
                         </div>
-                        <div class="col-12">
-                            <hr class="my-4">
-                        </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label for="password" class="form-label">Contraseña</label>
@@ -159,24 +164,18 @@
                         </div>
                         <div class="col-lg-6">
                             <div class="mb-3">
-                                <label for="password_confirmation" class="form-label">Confirmar contraseña</label>
+                                <label for="password_confirmation" class="form-label">Confirmar Contraseña</label>
                                 <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation">
-                                @error('password_confirmation')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                                @enderror
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="d-flex flex-column">
-                        <button type="submit" class="btn btn-primary px-5 mt-4">Registrar</button>
-                        <a href="{{ route('dashboard') }}" class="btn btn-link px-5 mt-4">Cancelar registro</a>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="d-flex flex-column">
+                            <button type="submit" class="btn btn-primary px-5 mt-4">Registrar</button>
+                            <a href="{{ route('dashboard') }}" class="btn btn-link px-5 mt-4">Cancelar registro</a>
+                        </div>
                     </div>
                 </div>
             </div>

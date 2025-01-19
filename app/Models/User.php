@@ -25,7 +25,7 @@ class User extends Authenticatable
     protected $fillable = [
         'nombreUs',
         'apellidosUs',
-        'tipoDoc',
+        'tipo_documento_id',
         'numDocu',
         'departamento_id',
         'ciudad_id',
@@ -45,4 +45,29 @@ class User extends Authenticatable
         'password',
         'remember_token',
     ];
+
+    // Relación con Departamento
+    public function departamento()
+    {
+        return $this->belongsTo(Departamento::class);
+    }
+
+    // Relación con Ciudad
+    public function ciudad()
+    {
+        return $this->belongsTo(Ciudad::class);
+    }
+
+    // Relación con Rol
+    public function rol()
+    {
+        return $this->belongsTo(Rol::class);
+    }
+
+    // Relación con TipoDocumento
+    public function tipoDocumento()
+    {
+        return $this->belongsTo(TipoDocumento::class, 'tipo_documento_id');
+    }
 }
+
