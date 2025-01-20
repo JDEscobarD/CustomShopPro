@@ -7,21 +7,31 @@
             <section class="login">
                 <img src="{{ asset('assets/media/images/CUSTOMSHOP-PRO-logo.svg') }}" alt="CustomShop PRO">
                 <!--Controles de logueo-->
-                <form action="{{ route('login.authenticate') }}" method="POST">
+                <form action="{{ route('login.authenticated') }}" method="POST">
                     @csrf
                     <div class="mb-3">
                         <label for="userInput" class="form-label">Usuario</label>
                         <div class="position-relative">
-                            <input type="email" name="email" class="form-control userInput" id="userInput" placeholder="Correo electrónico" required>
+                            <input type="email" name="email" class="form-control userInput @error('email') is-invalid @enderror" id="userInput" placeholder="Correo electrónico">
                             <span class="ic-login user"></span>
+                            @error('email')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="passInput" class="form-label">Contraseña</label>
                         <div class="position-relative">
-                            <input type="password" name="password" class="form-control passInput" id="passInput" placeholder="Contraseña" required>
+                            <input type="password" name="password" class="form-control passInput @error('password') is-invalid @enderror" id="passInput" placeholder="Contraseña">
                             <span class="toggle-text" id="togglePassword">Mostrar</span>
                             <span class="ic-login pass"></span>
+                            @error('password')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
                         </div>
                     </div>
                     <div class="btn-section">
@@ -29,7 +39,6 @@
                         <a href="#" class="btn btn-link d-block w-100">Olvidé mi contraseña</a>
                     </div>
                 </form>
-
             </section>
         </div>
         <div class="col-lg-6 offset-lg-1 d-none d-lg-block">

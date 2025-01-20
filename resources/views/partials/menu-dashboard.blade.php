@@ -48,10 +48,10 @@
             </a>
         </section>
         <section class="user-options">
-            <span class="name-user">Administrador</span>
+            <span class="name-user">{{ Auth::user()->nombreUs }} {{ Auth::user()->apellidosUs }}</span>
             <a href="#" class="item-aside">Usuarios<span class="icon-user users"></span></a>
             <!-- Formulario para cerrar sesión -->
-            <form action="" method="POST">
+            <form action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button type="submit" class="item-aside">
                     Cerrar sesión
