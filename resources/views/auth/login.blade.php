@@ -12,7 +12,7 @@
                     <div class="mb-3">
                         <label for="userInput" class="form-label">Usuario</label>
                         <div class="position-relative">
-                            <input type="email" name="email" class="form-control userInput @error('email') is-invalid @enderror" id="userInput" placeholder="Correo electrónico">
+                            <input type="email" name="email" class="form-control userInput @error('email') is-invalid @enderror" id="userInput" placeholder="Correo electrónico" value="{{ old('email') }}">
                             <span class="ic-login user"></span>
                             @error('email')
                             <div class="invalid-feedback">

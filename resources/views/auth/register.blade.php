@@ -6,16 +6,10 @@
     <div class="container mt-5">
         <div class="row">
             <div class="col-lg-6">
+                <img src="{{ asset('assets/media/images/CUSTOMSHOP-PRO-logo.svg') }}" alt="CustomShop PRO" class="mb-3">
                 <h2 class="fw-bold text-black-50 my-5">Formulario de Registro de Usuario</h2>
-            </div>
-            <div class="col-lg-6 text-center">
-                <img src="{{ asset('assets/media/images/CUSTOMSHOP-PRO-logo.svg') }}" alt="CustomShop PRO" class="my-5">
-            </div>
-        </div>
-        <form action="{{ route('register.store') }}" method="POST" class="pb-5">
-            @csrf
-            <div class="row">
-                <div class="col-lg-6">
+                <form action="{{ route('register.store') }}" method="POST" class="pb-5">
+                    @csrf
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="mb-3">
@@ -58,7 +52,13 @@
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label for="numDocu" class="form-label">Número de Documento</label>
-                                <input type="number" class="form-control @error('numDocu') is-invalid @enderror" id="numDocu" name="numDocu" value="{{ old('numDocu') }}">
+                                <input type="text"
+                                    class="form-control @error('numDocu') is-invalid @enderror"
+                                    id="numDocu"
+                                    name="numDocu"
+                                    value="{{ old('numDocu') }}"
+                                    minlength="6" pattern="\d{6,}"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '')">
                                 @error('numDocu')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -132,7 +132,18 @@
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label for="telefono" class="form-label">Teléfono</label>
-                                <input type="text" class="form-control @error('telefono') is-invalid @enderror" id="telefono" name="telefono" value="{{ old('telefono') }}">
+                                <input type="text" 
+                                    class="form-control @error('telefono') is-invalid @enderror" 
+                                    id="telefono" 
+                                    name="telefono" 
+                                    value="{{ old('telefono') }}" 
+                                    minlength="10" 
+                                    maxlength="10" 
+                                    pattern="3\d{9}" 
+                                    minlength="10" 
+                                    maxlength="10" 
+                                    pattern="3\d{9}"
+                                    oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,10);">
                                 @error('telefono')
                                 <div class="invalid-feedback">
                                     {{ $message }}
@@ -168,18 +179,20 @@
                                 <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" name="password_confirmation">
                             </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="d-flex flex-column">
-                            <button type="submit" class="btn btn-primary px-5 mt-4">Registrar</button>
-                            <a href="{{ route('dashboard') }}" class="btn btn-link px-5 mt-4">Cancelar registro</a>
+                        <div class="col-12">
+                            <div class="d-flex flex-column">
+                                <button type="submit" class="btn btn-primary px-5 mt-4">Registrar</button>
+                                <a href="{{ route('dashboard') }}" class="btn btn-link px-5 mt-4">Cancelar registro</a>
+                            </div>
                         </div>
                     </div>
-                </div>
+                </form>
             </div>
-        </form>
+            <div class="col-lg-5 offset-lg-1 text-center">
+                <img src="{{ asset('assets/media/images/img-register.jpg') }}" alt="CustomShop PRO" class="my-5 register-img">
+            </div>
+        </div>
+
     </div>
 </body>
 

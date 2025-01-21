@@ -46,12 +46,11 @@ class RegisteredUserController extends Controller
             'nombreUs' => ['required', 'string', 'max:255'],
             'apellidosUs' => ['required', 'string', 'max:255'],
             'tipo_documento_id' => ['required', 'exists:tipo_documento,id'], // Valida el campo tipo_documento_id
-            'numDocu' => ['required', 'string', 'unique:usuarios,numDocu'],
-            'departamento_id' => ['required', 'exists:departamentos,id'],
+            'numDocu' => ['required', 'numeric', 'digits_between:6,15'],
             'ciudad_id' => ['required', 'exists:ciudades,id'],
             'direccion' => ['required', 'string', 'max:255'],
             'rol_id' => ['required', 'exists:rol,id'],
-            'telefono' => ['required', 'string', 'max:15'],
+            'telefono' => ['required', 'regex:/^3\d{9}$/', 'size:10'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:usuarios,email'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
