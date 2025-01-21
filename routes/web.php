@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::view('nueva-categoria', 'dashboard.new-category')->name('new-category');
     Route::view('historial-pedidos', 'dashboard.history')->name('history');
     Route::view('metodo-pagos', 'dashboard.payment')->name('payment');
+    Route::view('usuarios', 'dashboard.users')->name('users');
     //Auth registro
     Route::view('registro', 'auth.register')->name('register.view');
     Route::get('registro', [RegisteredUserController::class, 'create'])->name('register.create');

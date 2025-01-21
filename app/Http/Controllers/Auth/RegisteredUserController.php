@@ -45,7 +45,7 @@ class RegisteredUserController extends Controller
         $request->validate([
             'nombreUs' => ['required', 'string', 'max:255'],
             'apellidosUs' => ['required', 'string', 'max:255'],
-            'tipo_documento_id' => ['required', 'exists:tipo_documento,id'], // Valida el campo tipo_documento_id
+            'tipo_documento_id' => ['required', 'exists:tipo_documento,id'],
             'numDocu' => ['required', 'numeric', 'digits_between:6,15'],
             'ciudad_id' => ['required', 'exists:ciudades,id'],
             'direccion' => ['required', 'string', 'max:255'],
@@ -59,7 +59,7 @@ class RegisteredUserController extends Controller
         $user = User::create([
             'nombreUs' => $request->nombreUs,
             'apellidosUs' => $request->apellidosUs,
-            'tipo_documento_id' => $request->tipo_documento_id, // Almacena el campo tipo_documento_id
+            'tipo_documento_id' => $request->tipo_documento_id,
             'numDocu' => $request->numDocu,
             'departamento_id' => $request->departamento_id,
             'ciudad_id' => $request->ciudad_id,
