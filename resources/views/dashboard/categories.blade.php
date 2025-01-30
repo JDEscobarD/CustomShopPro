@@ -35,45 +35,43 @@
             </div>
         </div>
     </div>
-    <form action="#" method="GET">
-        <div class="table-responsive mt-4">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">
-                            <div class="form-check">
-                                <input class="form-check-input row-checkbox" type="checkbox" value="" id="selectAll">
-                            </div>
-                        </th>
-                        <th scope="col">ID</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Descripcion</th>
-                        <th scope="col">Fecha de creación</th>
-                        <th scope="col">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody class="table-group-divider">
-                    @foreach($categorias as $categoria)
-                    <tr>
-                        <th>
-                            <div class="form-check">
-                                <input class="form-check-input row-checkbox" type="checkbox" value="" id="flexCheckIndeterminate">
-                            </div>
-                        </th>
-                        <td scope="row">{{ $categoria->id }}</td>
-                        <td class="name-item">{{ $categoria->nombre }}</td>
-                        <td>{{ $categoria->descripcion }}</td>
-                        <td>{{ $categoria->created_at->format('d/m/Y') }}</td>
-                        <td>
-                            <button type="submit" class="btn btn-primary me-2">Editar</button>
-                            <button type="button" class="btn btn-outline-danger">Eliminar</button>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </form>
+    <div class="table-responsive mt-4">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <div class="form-check">
+                            <input class="form-check-input row-checkbox" type="checkbox" value="" id="selectAll">
+                        </div>
+                    </th>
+                    <th scope="col">ID</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripcion</th>
+                    <th scope="col">Fecha de creación</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody class="table-group-divider">
+                @foreach($categorias as $categoria)
+                <tr>
+                    <th>
+                        <div class="form-check">
+                            <input class="form-check-input row-checkbox" type="checkbox" value="" id="flexCheckIndeterminate">
+                        </div>
+                    </th>
+                    <td scope="row">{{ $categoria->id }}</td>
+                    <td class="name-item">{{ $categoria->nombre }}</td>
+                    <td>{{ $categoria->descripcion }}</td>
+                    <td>{{ $categoria->created_at->format('d/m/Y') }}</td>
+                    <td>
+                        <a href="{{ route('categories.edit', $categoria->id) }}" class="btn btn-primary me-2">Editar</a>
+                        <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>    
     <div class="pagination">
         <div class="row w-100 aling-items-center">
             <div class="col-lg-6">

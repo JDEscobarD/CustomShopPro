@@ -40,6 +40,7 @@
                 Historial de pedidos
             </a>
         </section>
+        @if(auth()->user()->isAdmin())
         <section>
             <span class="title-section">Pagos</span>
             <a href="{{ route('payment') }}" class="item-aside {{ Request::is('metodo-pagos') ? 'active' : '' }}">
@@ -47,9 +48,12 @@
                 Configurar medios de pago
             </a>
         </section>
+        @endif
         <section class="user-options">
             <span class="name-user">{{ Auth::user()->nombreUs }} {{ Auth::user()->apellidosUs }}</span>
+            @if(auth()->user()->isAdmin())
             <a href="{{ route('users') }}" class="item-aside {{ Request::is('usuarios') ? 'active' : '' }}">Usuarios<span class="icon-user users"></span></a>
+            @endif
             <!-- Formulario para cerrar sesión -->
             <form action="{{ route('logout') }}" method="POST">
                 @csrf

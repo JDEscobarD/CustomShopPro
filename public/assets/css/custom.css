@@ -94,7 +94,7 @@ textarea.form-control {
     font-weight: 600;
     padding: 3px 5px;
     height: 20px;
-    line-height: 6px;
+    line-height: 12px;
 }
 
 .table .form-select{
@@ -131,20 +131,21 @@ textarea.form-control {
     height: 100%;
 }
 
-.pagination .page-item .page-link .previous {
-    background: url(../media/icons/bxs-chevron-left.svg) no-repeat center;
-}
-.pagination .page-item .page-link .next{
-    background: url(../media/icons/bxs-chevron-right.svg) no-repeat center;
-}
-
-.pagination .page-item .page-link .start {
+.pagination .page-item:first-of-type .page-link {    
+    color: rgba(0, 0, 0, 0);
     background: url(../media/icons/bxs-chevrons-left.svg) no-repeat center;
 }
+.pagination .page-item:last-of-type .page-link{
+    color: rgba(0, 0, 0, 0);
+    background: url(../media/icons/bxs-chevrons-right.svg) no-repeat center;    
+}
+.pagination .page-item.disabled:first-of-type .page-link {
+    background: url(../media/icons/bxs-chevrons-left-grey.svg) no-repeat center;
+}
 
-.pagination .page-item .page-link .end {
-    background: url(../media/icons/bxs-chevrons-right.svg) no-repeat center;
-} /*deshabilitados*/
+.pagination .page-item.disabled:last-of-type .page-link {
+    background: url(../media/icons/bxs-chevrons-right-grey.svg) no-repeat center;
+}
 
 .pagination .page-item .page-link.disabled{
     background-color: transparent;

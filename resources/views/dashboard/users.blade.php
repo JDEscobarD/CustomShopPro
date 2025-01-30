@@ -39,13 +39,25 @@
                     <td>{{ $usuario->rol->rol }}</td>
                     <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
                     <td>
-                        <button type="button" class="btn btn-primary me-2">Editar</button>
+                        <a href="{{ route('users.edit', $usuario->id) }}" class="btn btn-primary me-2">Editar</a>
                         <button type="button" class="btn btn-outline-danger">Eliminar</button>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+    </div>
+    <div class="pagination">
+        <div class="row w-100 aling-items-center">
+            <div class="col-lg-6">
+                <p id="item-count" class="mt-4 mb-0">Mostrando {{ $usuarios->lastItem() }} de {{ $usuarios->total() }} resultados</p>
+            </div>
+            <div class="col-lg-6 d-flex justify-content-end">
+                <nav class="mt-4">
+                    {{ $usuarios->links() }}
+                </nav>
+            </div>
+        </div>
     </div>
 </div>
 

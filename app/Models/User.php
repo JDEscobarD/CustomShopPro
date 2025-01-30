@@ -69,5 +69,22 @@ class User extends Authenticatable
     {
         return $this->belongsTo(TipoDocumento::class, 'tipo_documento_id');
     }
+
+    // Métodos para verificar el rol del usuario
+    public function isAdmin()
+    {
+        return $this->rol_id === 1;
+    }
+
+    public function isUsuario()
+    {
+        return $this->rol_id === 2;
+    }
+
+    // Método genérico para verificar cualquier rol
+    public function hasRole($roleId)
+    {
+        return $this->rol_id === $roleId;
+    }
 }
 

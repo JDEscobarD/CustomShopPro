@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\CiudadController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
 use Pest\Support\View;
@@ -27,7 +28,9 @@ Route::middleware('auth')->group(function () {
     Route::get('categorias', [CategoryController::class, 'index'])->name('categories');    
     Route::get('nueva-categoria', [CategoryController::class, 'create'])->name('new-category');
     Route::post('nueva-categoria', [CategoryController::class, 'store'])->name('categories.store');
-    
+    Route::get('categorias/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
+    Route::put('categorias/{id}', [CategoryController::class, 'update'])->name('categories.update');
+
     Route::view('historial-pedidos', 'dashboard.history')->name('history');
     Route::view('metodo-pagos', 'dashboard.payment')->name('payment');
     
@@ -36,8 +39,15 @@ Route::middleware('auth')->group(function () {
     Route::get('registro', [RegisteredUserController::class, 'create'])->name('register.create');
     Route::post('registro', [RegisteredUserController::class, 'store'])->name('register.store');
     //Otras rutas autenticadas
-    Route::get('usuarios', [AuthenticatedSessionController::class, 'index'])->name('users');
+    Route::get('usuarios', [UserController::class, 'index'])->name('users');
+    Route::get('usuarios/{id}/edit', [UserController::class, 'edit'])->name('users.edit'); 
+    Route::put('usuarios/{id}', [UserController::class, 'update'])->name('users.update');    
+
 });
+
+// Route::middleware('admin')->group(function () {
+//     Route::get('usuarios', [UserController::class, 'index'])->name('usuarios.index');    
+// });
 
 require __DIR__ . '/auth.php';
 
