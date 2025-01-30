@@ -1,66 +1,35 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Proyecto CustomShopPro - Análisis y desarrollo de software, SENA
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Descripción General
+CustomShopPro es una plataforma de comercio electrónico diseñada para tiendas que venden productos compuestos. Su objetivo es permitir a los clientes armar productos a medida según sus preferencias, proporcionando una experiencia de compra altamente personalizada.
 
-## About Laravel
+### Características Principales
+- **Gestión de Productos**: Soporte para productos físicos y virtuales, con opciones para definir productos compuestos.
+- **Configurador de Productos**: Permite la selección de componentes y personalización de productos según etiquetas y valores adicionales.
+- **Gestión de Categorías**: Creación y organización de categorías de productos para facilitar la navegación.
+- **Historial de Pedidos**: Registro de ventas con detalles de cada transacción.
+- **Cálculo de Envíos**: Soporte para opciones de envío gratuito y cálculos basados en peso y dimensiones.
+- **Carga de Imágenes**: Integración de una galería de imágenes para productos.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Base de Datos
+CustomShopPro utiliza una base de datos estructurada con múltiples tablas y relaciones para gestionar:
+- **Usuarios**: Información y autenticación de clientes.
+- **Productos**: Detalles, precios y configuraciones de productos compuestos.
+- **Categorías**: Organización de los productos por tipo.
+- **Pedidos**: Registro de compras realizadas por los clientes.
+- **Facturación y Envíos**: Gestión de pagos y logística de entrega.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Desarrollo
+- **Framework**: Laravel 11.
+- **Autenticación**: Basada en una tabla personalizada de usuarios sin utilizar las predeterminadas de Laravel.
+- **Carga Dinámica de Ciudades**: Implementada con `pluck` y LaravelCollective.
+- **Gestión de Contraseñas**: Actualmente en texto plano (pendiente de mejorar seguridad con `bcrypt`).
+- **Interfaz de Usuario**: Diseñada para facilitar la navegación y personalización de productos.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Próximos Pasos
+- **Mejorar Seguridad**: Implementar `bcrypt` para almacenamiento de contraseñas.
+- **Optimizar el Configurador de Productos**: Agregar más opciones avanzadas para personalización.
+- **Integración de Métodos de Pago**: Añadir soporte para diversas pasarelas de pago.
+- **Optimización del Rendimiento**: Mejoras en consultas de base de datos y carga de imágenes.
 
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
-
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+CustomShopPro es un proyecto en constante evolución, enfocado en mejorar la experiencia de compra personalizada para los usuarios. 🚀
