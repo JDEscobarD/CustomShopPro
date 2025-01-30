@@ -40,8 +40,6 @@ class RegisteredUserController extends Controller
     
     public function store(Request $request): RedirectResponse
     {
-        //dd($request->all()); // Verifica los datos recibidos
-        
         $request->validate([
             'nombreUs' => ['required', 'string', 'max:255'],
             'apellidosUs' => ['required', 'string', 'max:255'],

@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use App\Models\User;
 use App\Http\Requests\Auth\LoginRequest;
 
 class AuthenticatedSessionController extends Controller
@@ -53,6 +54,12 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function index()
+    {
+        $usuarios = User::all();
+        return view('dashboard.users', compact('usuarios'));
     }
 }
 

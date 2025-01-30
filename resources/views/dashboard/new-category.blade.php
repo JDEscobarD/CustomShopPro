@@ -14,22 +14,40 @@
                             <button type="button" class="btn w-100 btn-link red" id="clearFields">Limpiar campos</button>
                         </div>
                         <div class="col-lg-4 mb-3">
-                            <button type="submit" class="btn w-100 btn-primary">Guardar</button>
+                            <button type="submit" form="categoryForm" class="btn w-100 btn-primary">Guardar</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <form action="#" method="POST">
+    <!-- Archivo de vista: resources/views/dashboard/new-category.blade.php -->
+    <form action="{{ route('categories.store') }}" method="POST" id="categoryForm">
+        @csrf        
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre de la categoría" required>
+            <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" value="{{ old('nombre') }}"
+                placeholder="Nombre de la categoría"
+                required>
+            @error('nombre')
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
+            @enderror
         </div>
 
         <div class="mb-3">
             <label for="descripcion" class="form-label">Descripción del producto</label>
-            <textarea class="form-control" id="descripcion" name="descripcion" rows="4" placeholder="Escriba una descripción." required></textarea>
+            <textarea
+                class="form-control @error('descripcion') is-invalid @enderror"
+                id="descripcion"
+                name="descripcion"
+                rows="4"
+                placeholder="Escriba una descripción."
+                required>{{ old('descripcion') }}</textarea>
+            @error('descripcion')
+            <div class="invalid-feedback">{{ $message }}</div>
+            @enderror
         </div>
     </form>
 </div>

@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
     <title>{{ 'CustomShop - ' . ucfirst(str_replace('-', ' ', Route::currentRouteName())) }}</title>
 
+    <!--script para la función de ver contraseña en el login -->
     <script src="{{ asset('assets/js/showHidePass.js') }}" defer></script>
 </head>
 

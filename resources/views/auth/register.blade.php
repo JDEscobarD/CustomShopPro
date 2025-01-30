@@ -132,16 +132,16 @@
                         <div class="col-lg-6">
                             <div class="mb-3">
                                 <label for="telefono" class="form-label">Teléfono</label>
-                                <input type="text" 
-                                    class="form-control @error('telefono') is-invalid @enderror" 
-                                    id="telefono" 
-                                    name="telefono" 
-                                    value="{{ old('telefono') }}" 
-                                    minlength="10" 
-                                    maxlength="10" 
-                                    pattern="3\d{9}" 
-                                    minlength="10" 
-                                    maxlength="10" 
+                                <input type="text"
+                                    class="form-control @error('telefono') is-invalid @enderror"
+                                    id="telefono"
+                                    name="telefono"
+                                    value="{{ old('telefono') }}"
+                                    minlength="10"
+                                    maxlength="10"
+                                    pattern="3\d{9}"
+                                    minlength="10"
+                                    maxlength="10"
                                     pattern="3\d{9}"
                                     oninput="this.value = this.value.replace(/[^0-9]/g, '').slice(0,10);">
                                 @error('telefono')
@@ -182,7 +182,7 @@
                         <div class="col-12">
                             <div class="d-flex flex-column">
                                 <button type="submit" class="btn btn-primary px-5 mt-4">Registrar</button>
-                                <a href="{{ route('dashboard') }}" class="btn btn-link px-5 mt-4">Cancelar registro</a>
+                                <a href="{{ route('users') }}" class="btn btn-link px-5 mt-4">Cancelar registro</a>
                             </div>
                         </div>
                     </div>

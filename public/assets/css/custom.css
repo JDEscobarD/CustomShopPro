@@ -2,7 +2,7 @@
 
 App: CustomShop PRO
 Autores: Eliana Trujillo - Juan Escobar
-Versión: 1.0
+Versión: 1.1
 
 **/
 
@@ -382,6 +382,10 @@ textarea.form-control {
     background-image: url(../media/icons/bx-help-circle.svg);
 }
 
+.main-menu .user-options .icon-user.users {
+    background-image: url(../media/icons/bx-user.svg);
+}
+
 /*Hover changing icon*/
 
 .main-menu .item-aside.active .ic-menu.resumen {
@@ -410,6 +414,10 @@ textarea.form-control {
 
 .main-menu .item-aside.active .ic-menu.payment {
     background: url(../media/icons/bx-credit-card-alt-white.svg);
+}
+
+.main-menu .user-options .item-aside.active .icon-user.users {
+    background-image: url(../media/icons/bx-user-white.svg);
 }
 
 

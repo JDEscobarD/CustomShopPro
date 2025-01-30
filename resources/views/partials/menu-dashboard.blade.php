@@ -49,7 +49,7 @@
         </section>
         <section class="user-options">
             <span class="name-user">{{ Auth::user()->nombreUs }} {{ Auth::user()->apellidosUs }}</span>
-            <a href="{{ route('users') }}" class="item-aside">Usuarios<span class="icon-user users"></span></a>
+            <a href="{{ route('users') }}" class="item-aside {{ Request::is('usuarios') ? 'active' : '' }}">Usuarios<span class="icon-user users"></span></a>
             <!-- Formulario para cerrar sesión -->
             <form action="{{ route('logout') }}" method="POST">
                 @csrf

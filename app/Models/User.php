@@ -49,19 +49,19 @@ class User extends Authenticatable
     // Relación con Departamento
     public function departamento()
     {
-        return $this->belongsTo(Departamento::class);
+        return $this->belongsTo(Departamento::class, 'departamento_id');
     }
 
     // Relación con Ciudad
     public function ciudad()
     {
-        return $this->belongsTo(Ciudad::class);
+        return $this->belongsTo(Ciudad::class, 'ciudad_id');
     }
 
     // Relación con Rol
     public function rol()
     {
-        return $this->belongsTo(Rol::class);
+        return $this->belongsTo(Rol::class, 'rol_id');
     }
 
     // Relación con TipoDocumento

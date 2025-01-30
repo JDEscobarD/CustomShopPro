@@ -45,119 +45,31 @@
                                 <input class="form-check-input row-checkbox" type="checkbox" value="" id="selectAll">
                             </div>
                         </th>
-                        <th scope="col">Nombre</th>
                         <th scope="col">ID</th>
-                        <th scope="col">Inventario</th>
-                        <th scope="col">Fecha</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Descripcion</th>
+                        <th scope="col">Fecha de creación</th>
                         <th scope="col">Acciones</th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
+                    @foreach($categorias as $categoria)
                     <tr>
-                        <th scope="row">
+                        <th>
                             <div class="form-check">
                                 <input class="form-check-input row-checkbox" type="checkbox" value="" id="flexCheckIndeterminate">
                             </div>
                         </th>
-                        <td>Rines</td>
-                        <td>9857</td>
-                        <td>Hay existencias</td>
-                        <td>11/08/2024</td>
-                        <td>
-                            <button type="submit" class="btn btn-primary me-2">Editar</button>
-                            <button type="button" class="btn btn-outline-danger">Eliminar</button>
-                        </td>
-                    <tr>
-                        <th scope="row">
-                            <div class="form-check">
-                                <input class="form-check-input row-checkbox" type="checkbox" value="" id="flexCheckIndeterminate">
-                            </div>
-                        </th>
-                        <td>Llantas</td>
-                        <td>9585</td>
-                        <td>Un elemento restante</td>
-                        <td>11/08/2024</td>
+                        <td scope="row">{{ $categoria->id }}</td>
+                        <td class="name-item">{{ $categoria->nombre }}</td>
+                        <td>{{ $categoria->descripcion }}</td>
+                        <td>{{ $categoria->created_at->format('d/m/Y') }}</td>
                         <td>
                             <button type="submit" class="btn btn-primary me-2">Editar</button>
                             <button type="button" class="btn btn-outline-danger">Eliminar</button>
                         </td>
                     </tr>
-                    <tr>
-                        <th scope="row">
-                            <div class="form-check">
-                                <input class="form-check-input row-checkbox" type="checkbox" value="" id="flexCheckIndeterminate">
-                            </div>
-                        </th>
-                        <td>Marcos</td>
-                        <td>9255</td>
-                        <td>Hay exixtencias</td>
-                        <td>11/06/2024</td>
-                        <td>
-                            <button type="submit" class="btn btn-primary me-2">Editar</button>
-                            <button type="button" class="btn btn-outline-danger">Eliminar</button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <th scope="row">
-                            <div class="form-check">
-                                <input class="form-check-input row-checkbox" type="checkbox" value="" id="flexCheckIndeterminate">
-                            </div>
-                        </th>
-                        <td>Accesorios</td>
-                        <td>9825</td>
-                        <td>Hay exixtencias</td>
-                        <td>10/07/2024</td>
-                        <td>
-                            <button type="submit" class="btn btn-primary me-2">Editar</button>
-                            <button type="button" class="btn btn-outline-danger">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <div class="form-check">
-                                <input class="form-check-input row-checkbox" type="checkbox" value="" id="flexCheckIndeterminate">
-                            </div>
-                        </th>
-                        <td>Transmisiones</td>
-                        <td>8535</td>
-                        <td>Hay exixtencias</td>
-                        <td>10/06/2024</td>
-                        <td>
-                            <button type="submit" class="btn btn-primary me-2">Editar</button>
-                            <button type="button" class="btn btn-outline-danger">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <div class="form-check">
-                                <input class="form-check-input row-checkbox" type="checkbox" value="" id="flexCheckIndeterminate">
-                            </div>
-                        </th>
-                        <td>Ropa</td>
-                        <td>9258</td>
-                        <td>Un elemento restante</td>
-                        <td>12/08/2024</td>
-                        <td>
-                            <button type="submit" class="btn btn-primary me-2">Editar</button>
-                            <button type="button" class="btn btn-outline-danger">Eliminar</button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">
-                            <div class="form-check">
-                                <input class="form-check-input row-checkbox" type="checkbox" value="" id="flexCheckIndeterminate">
-                            </div>
-                        </th>
-                        <td>Armadas</td>
-                        <td>8535</td>
-                        <td>Hay exixtencias</td>
-                        <td>10/06/2024</td>
-                        <td>
-                            <button type="submit" class="btn btn-primary me-2">Editar</button>
-                            <button type="button" class="btn btn-outline-danger">Eliminar</button>
-                        </td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
@@ -165,35 +77,11 @@
     <div class="pagination">
         <div class="row w-100 aling-items-center">
             <div class="col-lg-6">
-                <p id="item-count" class="mt-4 mb-0">Mostrando 10 resultados</p>
+                <p id="item-count" class="mt-4 mb-0">Mostrando {{ $categorias->lastItem() }} de {{ $categorias->total() }} resultados</p>
             </div>
             <div class="col-lg-6 d-flex justify-content-end">
                 <nav class="mt-4">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <a class="page-link disabled" href="#">
-                                <span class="start" aria-hidden="true"></span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link disabled" href="#" aria-label="Previous">
-                                <span class="previous" aria-hidden="true"></span>
-                            </a>
-                        </li>
-                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span class="next" aria-hidden="true"></span>
-                            </a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">
-                                <span class="end" aria-hidden="true"></span>
-                            </a>
-                        </li>
-                    </ul>
+                    {{ $categorias->links() }}
                 </nav>
             </div>
         </div>
