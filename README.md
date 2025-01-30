@@ -31,9 +31,8 @@ CustomShopPro utiliza una base de datos estructurada con múltiples tablas y rel
 - **Interfaz de Usuario**: Diseñada para facilitar la navegación y personalización de productos.
 
 ### Próximos Pasos
-- **Mejorar Seguridad**: Implementar `bcrypt` para almacenamiento de contraseñas.
-- **Optimizar el Configurador de Productos**: Agregar más opciones avanzadas para personalización.
+- **Implementar papeleras**: Implementar papeleras de reciclaje para usuarios y categorias, y poder recuperar los archivos eliminados.
+- **Configurar Productos**: Agregar la funcionalidad de creación de productos.
 - **Integración de Métodos de Pago**: Añadir soporte para diversas pasarelas de pago.
-- **Optimización del Rendimiento**: Mejoras en consultas de base de datos y carga de imágenes.
 
 CustomShopPro es un proyecto en constante evolución, enfocado en mejorar la experiencia de compra personalizada para los usuarios. 🚀
