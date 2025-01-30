@@ -40,7 +40,13 @@
                     <td>{{ $usuario->created_at->format('d/m/Y') }}</td>
                     <td>
                         <a href="{{ route('users.edit', $usuario->id) }}" class="btn btn-primary me-2">Editar</a>
-                        <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                        <form action="{{ route('users.destroy', $usuario->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $usuario->id }}">
+                                Eliminar
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
@@ -63,9 +69,23 @@
 
 <!--Llamado de componentes modales para los respectivos mensajes-->
 
-<!--modal limpiar campos-->
-<x-modal id="clearFieldModal" title="¡Advertencia!">
-    <p>Cambios cancelados. <br> El formulario se ha restablecido.</p>
+@foreach($usuarios as $usuario)
+<!-- Modal para eliminar usuario -->
+<x-modal id="deleteModal{{ $usuario->id }}" title="¡Atención!">
+    <p>¿Estás seguro de eliminar a {{ $usuario->nombreUs }} {{ $usuario->apellidosUs }}?</p>
+
+    <!-- Formulario para eliminar el usuario -->
+    <form action="{{ route('users.destroy', $usuario->id) }}" method="POST" id="deleteForm{{ $usuario->id }}">
+        @csrf
+        @method('DELETE')
+    </form>
+
+    <!-- Personalizar el footer del modal -->
+    @slot('footer')
+    <button type="button" class="btn btn-link text-secondary" data-bs-dismiss="modal">Cancelar</button>
+    <button type="button" class="btn btn-danger px-5" onclick="document.getElementById('deleteForm{{ $usuario->id }}').submit()">Eliminar</button>
+    @endslot
 </x-modal>
+@endforeach
 
 @endsection

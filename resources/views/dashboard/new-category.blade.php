@@ -23,7 +23,7 @@
     </div>
     <!-- Archivo de vista: resources/views/dashboard/new-category.blade.php -->
     <form action="{{ route('categories.store') }}" method="POST" id="categoryForm">
-        @csrf        
+        @csrf
         <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
             <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" value="{{ old('nombre') }}"
@@ -57,6 +57,9 @@
 <!--modal limpiar campos-->
 <x-modal id="clearFieldModal" title="¡Advertencia!">
     <p>Cambios cancelados. <br> El formulario se ha restablecido.</p>
+    @slot('footer')
+    <button type="button" class="btn btn-primary px-5" data-bs-dismiss="modal" aria-label="Close">Aceptar</button>
+    @endslot
 </x-modal>
 
 @endsection

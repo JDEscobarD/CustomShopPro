@@ -61,6 +61,33 @@ class UserController extends Controller
         return redirect()->route('users');
     }
 
+    // Método para eliminar un usuario (soft delete)
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        
+        $user->delete();
+        
+        return redirect()->route('users');
+    }
+
+    // Obtener solo usuarios eliminados
+    public function papelera()
+    {
+        $usuarios = User::onlyTrashed()->get();
+
+        return view('dashbaord.trash.user', compact('usuarios'));
+    }
+
+    // Restaurar un usuario eliminado
+    public function restore($id)
+    {
+        $user = User::onlyTrashed()->findOrFail($id);
+        $user->restore();
+
+        return redirect()->route('dashbaord.trash.user');
+    }
+
     public function index()
     {
         $usuarios = User::paginate(10);

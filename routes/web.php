@@ -6,7 +6,6 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProfileController;
 use Pest\Support\View;
 
 
@@ -30,24 +29,29 @@ Route::middleware('auth')->group(function () {
     Route::post('nueva-categoria', [CategoryController::class, 'store'])->name('categories.store');
     Route::get('categorias/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
     Route::put('categorias/{id}', [CategoryController::class, 'update'])->name('categories.update');
+    Route::delete('categorias/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
     Route::view('historial-pedidos', 'dashboard.history')->name('history');
+});
+
+// Grupo de rutas protegidas para administradores
+Route::middleware(['auth', 'role:admin'])->group(function () {
+    // Ruta para el método de pagos
     Route::view('metodo-pagos', 'dashboard.payment')->name('payment');
-    
-    //Auth registro
+
+    // Rutas de registro
     Route::view('registro', 'auth.register')->name('register.view');
     Route::get('registro', [RegisteredUserController::class, 'create'])->name('register.create');
     Route::post('registro', [RegisteredUserController::class, 'store'])->name('register.store');
-    //Otras rutas autenticadas
+
+    // Rutas de gestión de usuarios
     Route::get('usuarios', [UserController::class, 'index'])->name('users');
-    Route::get('usuarios/{id}/edit', [UserController::class, 'edit'])->name('users.edit'); 
-    Route::put('usuarios/{id}', [UserController::class, 'update'])->name('users.update');    
-
+    Route::get('usuarios/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+    Route::put('usuarios/{id}', [UserController::class, 'update'])->name('users.update');
+    Route::delete('usuarios/{id}', [UserController::class, 'destroy'])->name('users.destroy');
+    Route::get('usuarios/papelera', [UserController::class, 'papelera'])->name('users.papelera');
+    Route::post('usuarios/{id}/restore', [UserController::class, 'restore'])->name('users.restore');
 });
-
-// Route::middleware('admin')->group(function () {
-//     Route::get('usuarios', [UserController::class, 'index'])->name('usuarios.index');    
-// });
 
 require __DIR__ . '/auth.php';
 

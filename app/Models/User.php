@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, SoftDeletes;
 
     /**
      * La tabla asociada al modelo.
@@ -70,7 +71,7 @@ class User extends Authenticatable
         return $this->belongsTo(TipoDocumento::class, 'tipo_documento_id');
     }
 
-    // Métodos para verificar el rol del usuario
+    // Validación de roles
     public function isAdmin()
     {
         return $this->rol_id === 1;
@@ -80,8 +81,7 @@ class User extends Authenticatable
     {
         return $this->rol_id === 2;
     }
-
-    // Método genérico para verificar cualquier rol
+    
     public function hasRole($roleId)
     {
         return $this->rol_id === $roleId;

@@ -8,7 +8,7 @@
                 {{ $slot }}
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary px-5" data-bs-dismiss="modal" aria-label="Close">Aceptar</button>
+                {{ $footer }}
             </div>
         </div>
     </div>

@@ -59,19 +59,25 @@
                             <input class="form-check-input row-checkbox" type="checkbox" value="" id="flexCheckIndeterminate">
                         </div>
                     </th>
-                    <td scope="row">{{ $categoria->id }}</td>
+                    <td scope="row" class="fw-bold">{{ $categoria->id }}</td>
                     <td class="name-item">{{ $categoria->nombre }}</td>
                     <td>{{ $categoria->descripcion }}</td>
                     <td>{{ $categoria->created_at->format('d/m/Y') }}</td>
                     <td>
                         <a href="{{ route('categories.edit', $categoria->id) }}" class="btn btn-primary me-2">Editar</a>
-                        <button type="button" class="btn btn-outline-danger">Eliminar</button>
+                        <form action="{{ route('categories.destroy', $categoria->id) }}" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ $categoria->id }}">
+                                Eliminar
+                            </button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
-    </div>    
+    </div>
     <div class="pagination">
         <div class="row w-100 aling-items-center">
             <div class="col-lg-6">
@@ -85,4 +91,26 @@
         </div>
     </div>
 </div>
+
+<!--Llamado de componentes modales para los respectivos mensajes-->
+
+@foreach($categorias as $categoria)
+<!-- Modal para eliminar categoría -->
+<x-modal id="deleteModal{{ $categoria->id }}" title="¡Atención!">
+    <p>¿Estás seguro de eliminar la categoría {{ $categoria->nombre }}?</p>
+
+    <!-- Formulario para eliminar el usuario -->
+    <form action="{{ route('categories.destroy', $categoria->id) }}" method="POST" id="deleteForm{{ $categoria->id }}">
+        @csrf
+        @method('DELETE')
+    </form>
+
+    <!-- Personalizar el footer del modal -->
+    @slot('footer')
+    <button type="button" class="btn btn-link text-secondary" data-bs-dismiss="modal">Cancelar</button>
+    <button type="button" class="btn btn-danger px-5" onclick="document.getElementById('deleteForm{{ $categoria->id }}').submit()">Eliminar</button>
+    @endslot
+</x-modal>
+@endforeach
+
 @endsection

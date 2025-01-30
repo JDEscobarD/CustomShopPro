@@ -50,6 +50,16 @@ class CategoryController extends Controller
         return redirect()->route('categories');
     }
 
+    // Método para eliminar un usuario (soft delete)
+    public function destroy($id)
+    {
+        $category = Category::findOrFail($id);
+
+        $category->delete();
+
+        return redirect()->route('categories');
+    }
+
     public function index()
     {
         $categorias = Category::paginate(10);
