@@ -1,4 +1,4 @@
-![CustomShopPro Logo](public/assets/media/images/CUSTOMSHOP-PRO-logo.svg)  
+![CustomShopPro Logo](public/assets/media/images/CUSTOMSHOP-PRO-logo_white.svg)  
 ![Laravel Logo](public/assets/media/images/Logotype.svg) 
 
 
