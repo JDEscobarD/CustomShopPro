@@ -35,12 +35,6 @@ return new class extends Migration
             $table->foreign('ciudad_id')->references('id')->on('ciudades')->onDelete('cascade');
             $table->foreign('rol_id')->references('id')->on('roles')->onDelete('cascade');
         });
-
-        Schema::create('password_reset_tokens', function (Blueprint $table) {
-            $table->string('email')->primary();
-            $table->string('token');
-            $table->timestamp('created_at')->nullable();
-        });
     }
 
     /**
@@ -50,7 +44,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('password_reset_tokens');
         Schema::dropIfExists('usuarios');
     }
 };
