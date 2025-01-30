@@ -1,5 +1,5 @@
-![CustomShopPro Logo](assets/media/images/CUSTOMSHOP-PRO-logo.svg)  
-![Laravel Logo](ruta/al/logo-laravel.png) 
+![CustomShopPro Logo](public/assets/media/images/CUSTOMSHOP-PRO-logo.svg)  
+![Laravel Logo](public/assets/media/images/Logotype.svg) 
 
 
 ## Proyecto CustomShopPro - Análisis y desarrollo de software, SENA
