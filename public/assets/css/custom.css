@@ -265,8 +265,13 @@ textarea.form-control {
     padding: 15px 0;
     color: #FFF;
     background-color: #191919;
-    position: fixed;
+    position: fixed;    
+}
+
+.content-menu{
     overflow: auto;
+    height: 100vh;
+    padding-bottom: 80px;
 }
 
 .main-menu header img {
