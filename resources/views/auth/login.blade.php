@@ -36,7 +36,7 @@
                     </div>
                     <div class="btn-section">
                         <button type="submit" class="btn btn-primary d-block w-100">Iniciar sesión</button>
-                        <a href="#" class="btn btn-link d-block w-100">Olvidé mi contraseña</a>
+                        <a href="{{ route('password.email') }}" class="btn btn-link d-block w-100">Cambiar o reestablecer contraseña</a>
                     </div>
                 </form>
             </section>
