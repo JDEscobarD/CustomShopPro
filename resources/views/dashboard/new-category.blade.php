@@ -46,7 +46,9 @@
                 placeholder="Escriba una descripción."
                 required>{{ old('descripcion') }}</textarea>
             @error('descripcion')
-            <div class="invalid-feedback">{{ $message }}</div>
+            <div class="invalid-feedback">
+                {{ $message }}
+            </div>
             @enderror
         </div>
     </form>

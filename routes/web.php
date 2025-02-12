@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::put('categorias/{id}', [CategoryController::class, 'update'])->name('categories.update');
     Route::delete('categorias/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
 
-    Route::view('historial-pedidos', 'dashboard.history')->name('history');
+    Route::view('historial-pedidos', 'dashboard.history')->name('history');    
 });
 
 // Grupo de rutas protegidas para administradores
