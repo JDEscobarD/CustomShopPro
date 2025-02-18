@@ -17,7 +17,8 @@ class PasswordResetController extends Controller
             'email' => 'required|email|exists:usuarios,email'
         ]);
 
-        $token = bin2hex(random_bytes(16));
+        // Generar un token de 6 números aleatorios
+        $token = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
 
         // Guardar el token en la base de datos
         DB::table('password_reset_tokens')->updateOrInsert(
@@ -46,18 +47,25 @@ class PasswordResetController extends Controller
     {
         $request->validate([
             'email' => 'required|email|exists:usuarios,email',
-            'token' => 'required'
+            'token' => 'required|digits:6' // Asegura que el token tenga exactamente 6 dígitos
         ]);
 
         $record = DB::table('password_reset_tokens')->where('email', $request->email)->first();
 
         if (!$record || !Hash::check($request->token, $record->token)) {
-            return back()->withErrors(['token' => 'El token es inválido o ha expirado.']);
+            return response()->json([
+                'success' => false,
+                'message' => 'El token es inválido o ha expirado.'
+            ], 422);
         }
 
-        return redirect()->route('password.reset.form', ['email' => $request->email]);
+        // Redirigir a la ruta de restablecimiento de contraseña
+        return response()->json([
+            'success' => true,
+            'redirect' => route('password.reset.form', ['email' => $request->email])
+        ]);
     }
-
+    
     // Mostrar el formulario de cambio de contraseña
     public function showResetForm($email)
     {

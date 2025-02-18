@@ -36,13 +36,13 @@
 
 <!-- Modal para validar el token -->
 <x-modal title="Código de verificación" id="modalToken">
-    <form action="{{ route('password.validate') }}" method="POST">
+    <form action="{{ route('password.validate') }}" method="POST" id="validateTokenForm">
         @csrf
-        <input type="hidden" name="email" value="{{ old('email') }}">
+        <input type="hidden" name="email" id="modalEmail" value="{{ old('email') }}">
         <p class="mb-4">Ingrese el código que llegó a su correo electrónico.</p>
         <div class="mb-3">
             <label for="tokenValidate" class="form-label">Token de verificación</label>
-            <input type="text" name="token" class="form-control @error('token') is-invalid @enderror" id="tokenValidate" aria-describedby="emailHelp" placeholder="Token de verificación" required>
+            <input type="text" name="token" class="form-control @error('token') is-invalid @enderror" id="tokenValidate" placeholder="Token de verificación" required maxlength="6" pattern="\d{6}" title="Ingrese un token de 6 dígitos">
             @error('token')
             <div class="invalid-feedback">
                 {{ $message }}
@@ -52,39 +52,12 @@
 
         @slot('footer')
         <button type="button" class="btn btn-link text-secondary" data-bs-dismiss="modal">Cancelar</button>
-        <button type="submit" class="btn btn-primary px-5">Validar</button>
+        <button type="submit" class="btn btn-primary px-5" id="validateTokenButton">Validar</button>
         @endslot
     </form>
 </x-modal>
 
 <!-- Script para manejar el modal -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('tokenForm');
-        const modal = new bootstrap.Modal(document.getElementById('modalToken'));
+<script src="{{ asset('assets/js/token-pass.js') }}" defer></script>
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: {
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
-                    },
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.success) {
-                        modal.show(); // Mostrar el modal después de enviar el correo
-                    } else {
-                        alert('Error al enviar el correo.');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                });
-        });
-    });
-</script>
 @endsection

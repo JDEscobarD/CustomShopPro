@@ -22,9 +22,9 @@ Route::middleware('guest')->group(function () {
     })->name('password.request');
 
     Route::post('cambiar-contrasena', [PasswordResetController::class, 'sendResetToken'])->name('password.pin');
-    Route::post('cambiar-contrasena/validacion', [PasswordResetController::class, 'validateToken'])->name('password.validate');
+    Route::post('cambiar-contrasena/validacion', [PasswordResetController::class, 'validateToken'])->name('password.validate');    
     Route::get('cambiar-contrasena/{email}', [PasswordResetController::class, 'showResetForm'])->name('password.reset.form');
-    Route::post('cambiar-contrasena', [PasswordResetController::class, 'resetPassword'])->name('password.reset');
+    Route::post('cambiar-contrasena/reset', [PasswordResetController::class, 'resetPassword'])->name('password.reset');
 });
 
 //Grupo de rutas protegidas para administradores
