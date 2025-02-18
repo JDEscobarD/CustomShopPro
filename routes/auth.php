@@ -8,15 +8,15 @@ use Illuminate\Support\Facades\Route;
 
 // Rutas para invitados (no autenticados)
 Route::middleware('guest')->group(function () {
-    // Registro
+    //Registro
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
     Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
 
-    // Login
+    //Login
     Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
     Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login.authenticated');
 
-    // Restablecimiento de contraseña
+    //Restablecimiento de contraseña
     Route::get('cambiar-contrasena', function () {
         return view('auth.forgot-password');
     })->name('password.request');
@@ -27,17 +27,17 @@ Route::middleware('guest')->group(function () {
     Route::post('cambiar-contrasena', [PasswordResetController::class, 'resetPassword'])->name('password.reset');
 });
 
-// Grupo de rutas protegidas para administradores
+//Grupo de rutas protegidas para administradores
 Route::middleware(['auth', 'role:admin'])->group(function () {
-    // Ruta para el método de pagos
+    //Ruta para el método de pagos
     Route::view('metodo-pagos', 'dashboard.payment')->name('payment');
 
-    // Rutas de registro
+    //Rutas de registro
     Route::view('registro', 'auth.register')->name('register.view');
     Route::get('registro', [RegisteredUserController::class, 'create'])->name('register.create');
     Route::post('registro', [RegisteredUserController::class, 'store'])->name('register.store');
 
-    // Rutas de gestión de usuarios
+    //Rutas de gestión de usuarios
     Route::get('usuarios', [UserController::class, 'index'])->name('users');
     Route::get('usuarios/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
     Route::put('usuarios/{id}', [UserController::class, 'update'])->name('users.update');
