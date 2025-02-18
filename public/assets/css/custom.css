@@ -611,6 +611,27 @@ textarea.form-control {
     border-radius: 15px;
 }
 
+/*Pantallas de error*/
+
+.error403 {
+    font-family: "Lato", sans-serif;
+    margin-top: 150px;
+}
+
+.error403 img {
+    height: 200px;
+    margin-top: -50px;
+}
+
+.error403 h2 {
+    font-size: 200px
+}
+
+.error403 p {
+    font-size: 20px;
+    font-weight: 500;
+}
+
 /* Media Query */
 
 @media (max-width: 768px){

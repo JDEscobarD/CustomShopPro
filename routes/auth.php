@@ -8,10 +8,7 @@ use Illuminate\Support\Facades\Route;
 
 // Rutas para invitados (no autenticados)
 Route::middleware('guest')->group(function () {
-    //Registro
-    Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
-    Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
-
+    
     //Login
     Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
     Route::post('login', [AuthenticatedSessionController::class, 'store'])->name('login.authenticated');
@@ -33,6 +30,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::view('metodo-pagos', 'dashboard.payment')->name('payment');
 
     //Rutas de registro
+    Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
+    Route::post('register', [RegisteredUserController::class, 'store'])->name('register.store');
     Route::view('registro', 'auth.register')->name('register.view');
     Route::get('registro', [RegisteredUserController::class, 'create'])->name('register.create');
     Route::post('registro', [RegisteredUserController::class, 'store'])->name('register.store');
