@@ -115,6 +115,10 @@ textarea.form-control {
     color: #0469FF;
     font-weight: 600;
 }
+
+.table tbody tr td:last-of-type{
+    min-width: 150px;
+}
 /* Paginador */
 
 .pagination .page-item .page-link{

@@ -97,7 +97,7 @@
 @foreach($categorias as $categoria)
 <!-- Modal para eliminar categoría -->
 <x-modal id="deleteModal{{ $categoria->id }}" title="¡Atención!">
-    <p>¿Estás seguro de eliminar la categoría {{ $categoria->nombre }}?</p>
+    <p>¿Estás seguro de eliminar la categoría <strong>{{ $categoria->nombre }}</strong>?</p>
 
     <!-- Formulario para eliminar el usuario -->
     <form action="{{ route('categories.destroy', $categoria->id) }}" method="POST" id="deleteForm{{ $categoria->id }}">

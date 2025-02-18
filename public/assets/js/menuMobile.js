@@ -5,12 +5,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const body = document.body;
 
     toggleMenuButton.addEventListener("click", function () {
-        //alternar clases para abrir/cerrar el menú y backdrop
+        
         const isOpen = contentMenu.classList.toggle("open");
         menuBackdrop.classList.toggle("active", isOpen);
         body.classList.toggle("no-scroll", isOpen);
 
-        //añadir o quitar la clase 'close' al botón
+        
         toggleMenuButton.classList.toggle("close", isOpen);
     });
 
