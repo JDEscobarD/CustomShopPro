@@ -98,7 +98,7 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="nombre" class="form-label d-flex justify-content-between"><span>URL</span> <span>Copiar</span></label>
+                        <label for="nombre" class="form-label d-flex justify-content-between"><span>URL</span> <span>Vista previa</span></label>
                         <input type="text" class="form-control" id="nombre" name="nombre" placeholder="https://">
                     </div>
                 </div>
