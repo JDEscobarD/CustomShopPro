@@ -632,6 +632,11 @@ textarea.form-control {
     font-weight: 500;
 }
 
+/*modales*/
+.modal .modal-header, .modal .modal-footer{
+    border: 0 !important;
+}
+
 /* Media Query */
 
 @media (max-width: 768px){
