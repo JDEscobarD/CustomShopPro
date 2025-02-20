@@ -12,8 +12,7 @@ use Carbon\Carbon;
 
 class PasswordResetController extends Controller
 {
-    // Enviar el token por correo
-
+    //enviar token
     public function sendResetToken(Request $request)
     {
         
@@ -60,7 +59,7 @@ class PasswordResetController extends Controller
         ]);
     }
 
-    //Validar el token
+    //validar el token
     public function validateToken(Request $request)
     {
         $request->validate([
