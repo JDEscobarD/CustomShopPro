@@ -1,14 +1,14 @@
 <?php
 
-use App\Http\Controllers\Api\CiudadController;
+use App\Http\Controllers\CiudadController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 
+
 //Rutas públicas
-Route::middleware('guest')->group(function () {
-    //Ruta para obtener ciudades según el departamento
-    Route::get('ciudades/{departamentoId}', [CiudadController::class, 'ciudadesPorDepartamento']);
+Route::middleware('guest')->group(function () {    
+    Route::get('/ciudades/{departamento}', [CiudadController::class, 'getCiudadesByDepartamento']);
 });
 
 //Rutas autenticadas

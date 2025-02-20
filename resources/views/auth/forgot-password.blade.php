@@ -37,6 +37,7 @@
                 </div>
 
                 <button type="submit" class="btn btn-primary px-5 w-100">Enviar código</button>
+                <a href="{{ route('login') }}" class="btn btn-link px-5 mt-4 w-100">Cancelar</a>
             </form>
         </div>
     </div>

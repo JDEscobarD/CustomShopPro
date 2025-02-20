@@ -25,7 +25,7 @@ class PasswordResetController extends Controller
                 }),
             ],
         ], [
-            'email.exists' => 'El correo electrónico no existe en nuestros registros.',
+            'email.exists' => '',
         ]);
 
         
@@ -50,7 +50,7 @@ class PasswordResetController extends Controller
 
         
         Mail::send('emails.password-reset', ['token' => $token], function ($message) use ($request) {
-            $message->to($request->email);
+            $message->to($request->email)->subject('Restablecimiento de contraseña');
         });
 
         

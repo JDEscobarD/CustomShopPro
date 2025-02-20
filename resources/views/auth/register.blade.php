@@ -70,7 +70,7 @@
                             <select class="form-select @error('departamento_id') is-invalid @enderror" id="departamentos" name="departamento_id">
                                 <option value="" selected disabled>Seleccione...</option>
                                 @foreach ($departamentos as $departamento)
-                                <option value="{{ $departamento->id }} {{ old('departamento_id') == $departamento->id ? 'selected' : '' }}">
+                                <option value="{{ $departamento->id }}" {{ old('departamento_id') == $departamento->id ? 'selected' : '' }}>
                                     {{ $departamento->nombre }}
                                 </option>
                                 @endforeach
@@ -82,13 +82,14 @@
                             @enderror
                         </div>
                     </div>
+                    <!-- Selector de Ciudades -->
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label for="ciudades" class="form-label">Ciudad</label>
                             <select class="form-select @error('ciudad_id') is-invalid @enderror" id="ciudades" name="ciudad_id">
                                 <option value="" selected disabled>Seleccione...</option>
                                 @foreach ($ciudades as $ciudad)
-                                <option value="{{ $ciudad->id }} {{ old('ciudad_id') == $ciudad->id ? 'selected' : '' }}">
+                                <option value="{{ $ciudad->id }}" data-departamento-id="{{ $ciudad->departamento_id }}" {{ old('ciudad_id') == $ciudad->id ? 'selected' : '' }}>
                                     {{ $ciudad->nombre }}
                                 </option>
                                 @endforeach
@@ -200,4 +201,8 @@
     </div>
 
 </div>
+
+<!-- Script para filtrar ciudades-->
+<script src="{{ asset('assets/js/filter-city.js') }}" defer></script>
+
 @endsection

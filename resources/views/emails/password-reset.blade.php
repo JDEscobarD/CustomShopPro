@@ -7,7 +7,7 @@
     <title>Cambio de contraseña</title>
 </head>
 
-<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 0; text-align: center;">
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; margin-top:50px; padding: 0; text-align: center;">
     <table width="100%" cellpadding="0" cellspacing="0" style="max-width: 600px; margin: 0 auto; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">        
         <tr>
             <td style="background-color: #0469FF; padding: 30px; text-align: center;">
