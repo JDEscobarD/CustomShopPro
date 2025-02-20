@@ -72,7 +72,7 @@
 @foreach($usuarios as $usuario)
 <!-- Modal para eliminar usuario -->
 <x-modal id="deleteModal{{ $usuario->id }}" title="¡Atención!">
-    <p>¿Estás seguro de eliminar a {{ $usuario->nombreUs }} {{ $usuario->apellidosUs }}?</p>
+    <p>¿Estás seguro de eliminar a <strong>{{ $usuario->nombreUs }} {{ $usuario->apellidosUs }}</strong>?</p>
 
     <!-- Formulario para eliminar el usuario -->
     <form action="{{ route('users.destroy', $usuario->id) }}" method="POST" id="deleteForm{{ $usuario->id }}">

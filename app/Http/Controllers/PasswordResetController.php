@@ -6,21 +6,41 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use Carbon\Carbon;
 
 class PasswordResetController extends Controller
 {
     // Enviar el token por correo
+
     public function sendResetToken(Request $request)
     {
-        $request->validate([
-            'email' => 'required|email|exists:usuarios,email'
+        
+        $validator = Validator::make($request->all(), [
+            'email' => [
+                'required',
+                'email',
+                Rule::exists('usuarios', 'email')->where(function ($query) {
+                    //
+                }),
+            ],
+        ], [
+            'email.exists' => 'El correo electrónico no existe en nuestros registros.',
         ]);
 
-        // Generar un token de 6 números aleatorios
+        
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => $validator->errors()->first('email'),
+            ], 422);
+        }
+
+        
         $token = str_pad(random_int(0, 999999), 6, '0', STR_PAD_LEFT);
 
-        // Guardar el token en la base de datos
+        
         DB::table('password_reset_tokens')->updateOrInsert(
             ['email' => $request->email],
             [
@@ -29,25 +49,23 @@ class PasswordResetController extends Controller
             ]
         );
 
-        // Enviar el correo con el token
+        
         Mail::send('emails.password-reset', ['token' => $token], function ($message) use ($request) {
             $message->to($request->email);
-            $message->subject('Restablecimiento de Contraseña');
         });
 
-        // Devolver una respuesta JSON
+        
         return response()->json([
-            'success' => true,
-            'message' => '¡Hemos enviado un token para restablecer tu contraseña!'
+            'success' => true
         ]);
     }
 
-    // Validar el token
+    //Validar el token
     public function validateToken(Request $request)
     {
         $request->validate([
             'email' => 'required|email|exists:usuarios,email',
-            'token' => 'required|digits:6' // Asegura que el token tenga exactamente 6 dígitos
+            'token' => 'required|digits:6'
         ]);
 
         $record = DB::table('password_reset_tokens')->where('email', $request->email)->first();
@@ -59,20 +77,19 @@ class PasswordResetController extends Controller
             ], 422);
         }
 
-        // Redirigir a la ruta de restablecimiento de contraseña
         return response()->json([
             'success' => true,
             'redirect' => route('password.reset.form', ['email' => $request->email])
         ]);
     }
     
-    // Mostrar el formulario de cambio de contraseña
+    //formulario de cambio de contraseña
     public function showResetForm($email)
     {
         return view('auth.password-reset', compact('email'));
     }
 
-    // Procesar el cambio de contraseña
+    //cambio de contraseña
     public function resetPassword(Request $request)
     {
         $request->validate([
@@ -80,12 +97,12 @@ class PasswordResetController extends Controller
             'password' => 'required|confirmed|min:8'
         ]);
 
-        // Actualizar la contraseña
+        
         DB::table('usuarios')->where('email', $request->email)->update([
             'password' => bcrypt($request->password),
         ]);
 
-        // Eliminar el token utilizado
+        
         DB::table('password_reset_tokens')->where('email', $request->email)->delete();
 
         return redirect()->route('login')->with('status', '¡Contraseña actualizada exitosamente!');
