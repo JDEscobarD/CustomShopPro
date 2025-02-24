@@ -19,14 +19,14 @@
     </div>
     <div class="filter-section">
         <div class="row align-items-end">
-            <div class="col-lg-2 mb-3">
+            <div class="col-xl-2 col-lg-4 mb-3">
                 <label for="categories" class="form-label">Acción por lotes</label>
                 <select class="form-select" name="categories" aria-label="Default select example">
                     <option selected disabled>Seleccione</option>
                     <option value="2">Borrar</option>
                 </select>
             </div>
-            <div class="col-lg-2 mb-3">
+            <div class="col-xl-2 col-lg-4 mb-3">
                 <label for="categories" class="form-label">Filtrar</label>
                 <select class="form-select" name="categories" aria-label="Default select example">
                     <option selected disabled>Categoria</option>
@@ -36,7 +36,7 @@
                     <option value="4">Accesorios</option>
                 </select>
             </div>
-            <div class="col-lg-2 mb-3">
+            <div class="col-xl-2 col-lg-4 mb-3">
                 <select class="form-select" aria-label="Default select example">
                     <option selected disabled>Fecha</option>
                     <option value="1">Agregado recientemente</option>
@@ -44,7 +44,7 @@
                     <option value="3">últimos 6 meses</option>
                 </select>
             </div>
-            <div class="col-lg-2 mb-3">
+            <div class="col-xl-2 col-lg-4 mb-3">
                 <label for="orderFilter" class="form-label">Ordenar por:</label>
                 <select class="form-select" id="orderFilter">
                     <option selected disabled value="1">Seleccione</option>
@@ -54,10 +54,10 @@
                     <option value="5">Menor precio a mayor</option>
                 </select>
             </div>
-            <div class="col-lg-2 mb-3">
+            <div class="col-xl-2 col-lg-4 mb-3">
                 <button type="submit" id="applyFilter" class="btn btn-outline-primary px-5 w-100">Aplicar</button>
             </div>
-            <div class="col-lg-2 mb-3">
+            <div class="col-xl-2 col-lg-4 mb-3">
                 <button type="button" id="resetFilter" class="btn btn-link red">Borrar filtros</button>
             </div>
         </div>

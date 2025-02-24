@@ -10,7 +10,7 @@
             <div class="col-lg-6 mb-3">
                 <div class="box-button">
                     <div class="row mx-auto w-100 justify-content-end align-items-center">
-                        <div class="col-lg-4 mb-3">
+                        <div class="col-xl-4 col-lg-6 mb-3">
                             <a href="{{ route('register.create') }}" class="btn w-100 btn-primary">Nuevo usuario</a>
                         </div>
                     </div>

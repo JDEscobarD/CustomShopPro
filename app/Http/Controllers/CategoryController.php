@@ -60,6 +60,20 @@ class CategoryController extends Controller
         return redirect()->route('categories');
     }
 
+    public function batchAction(Request $request)
+    {
+        $request->validate([
+            'selected_ids' => 'required|array',
+            'selected_ids.*' => 'exists:categories,id',
+        ]);
+
+        $selectedIds = $request->input('selected_ids');
+
+        Category::whereIn('id', $selectedIds)->delete();
+
+        return redirect()->route('categories')->with('success', 'Categorías eliminadas correctamente.');
+    }
+
     public function index()
     {
         $categorias = Category::paginate(10);

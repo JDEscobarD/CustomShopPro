@@ -12,10 +12,10 @@
             <div class="col-lg-6 mb-3">
                 <div class="box-button">
                     <div class="row mx-auto w-100 justify-content-end align-items-center">
-                        <div class="col-lg-4 mb-3">
+                        <div class="col-xl-4 col-lg-6 mb-3">
                             <a href="{{ route('categories') }}" type="button" class="btn w-100 btn-link red" id="delete">Cancelar edición</a>
                         </div>
-                        <div class="col-lg-4 mb-3">
+                        <div class="col-xl-4 col-lg-6 mb-3">
                             <button type="submit" form="categoryForm" class="btn w-100 btn-primary">
                                 Actualizar
                             </button>
