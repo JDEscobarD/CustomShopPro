@@ -707,23 +707,19 @@ textarea.form-control {
     .box-button .row .col-lg-4:last-of-type {
         order: 1;
     }
+    .body-content {
+        margin-left: 0;
+    }    
+    .main-menu button {
+        display: block;
+    }
 }
 
 @media (max-width: 576px) {
-    .body-content {
-        margin-left: 0;
-    }
-
-
     .welcome-message {
         padding: 45px 15px 15px 15px;
     }
-
     .card-section .card-info h2 {
         font-size: 24px;
-    }
-
-    .main-menu button {
-        display: block;
     }
 }

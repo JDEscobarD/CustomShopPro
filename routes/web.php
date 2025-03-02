@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
     Route::get('categorias/{id}/edit', [CategoryController::class, 'edit'])->name('categories.edit');
     Route::put('categorias/{id}', [CategoryController::class, 'update'])->name('categories.update');
     Route::delete('categorias/{id}', [CategoryController::class, 'destroy'])->name('categories.destroy');
+    Route::get('/categories/search', [CategoryController::class, 'search'])->name('categories.search');
 
     //Logout
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');

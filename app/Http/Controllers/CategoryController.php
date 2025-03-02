@@ -74,6 +74,17 @@ class CategoryController extends Controller
         return redirect()->route('categories')->with('success', 'Categorías eliminadas correctamente.');
     }
 
+    public function search(Request $request)
+    {
+        $query = $request->input('query');  
+
+        $categorias = Category::where('nombre', 'like', "%{$query}%")
+            ->orWhere('descripcion', 'like', "%{$query}%")
+            ->paginate(10);
+
+        return view('dashboard.categories', compact('categorias'));
+    }
+
     public function index()
     {
         $categorias = Category::paginate(10);

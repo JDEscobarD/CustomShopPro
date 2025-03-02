@@ -4,15 +4,18 @@
 
 <div class="container-fluid">
     <div class="header-body-content pb-3 mb-4">
-        <div class="row align-item-center">
-            <div class="col-lg-6 mb-3">
+        <div class="row align-items-center">
+            <div class="col-xl-6 mb-3">
                 <h1 class="text-left fw-bold">Categorías</h1>
             </div>
-            <div class="col-lg-6 mb-3">
-                <div class="box-button d-flex align-item-center justify-content-end">
-                    <form class="d-flex search-controller" role="search">
-                        <input class="form-control" type="search" placeholder="Buscar" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit"></button>
+            <div class="col-xl-2 col-lg-3 offset-xl-1 offset-lg-3 mb-3">
+                <a href="{{ route('categories') }}" class="btn w-100 btn-link red">Limpiar búsqueda</a>
+            </div>
+            <div class="col-xl-3 col-lg-6 mb-3">
+                <div class="box-button d-flex align-items-center justify-content-end">
+                    <form class="d-flex search-controller w-100" role="search" action="{{ route('categories.search') }}" method="GET">
+                        <input class="form-control" type="search" name="query" placeholder="Buscar" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit" aria-label="Buscar"></button>
                     </form>
                 </div>
             </div>
@@ -39,6 +42,10 @@
                 </div>
             </div>
         </div>
+
+        @if(request()->has('query'))
+        <p class="mt-4 mb-3">Mostrando resultados para: <strong>"{{ request()->input('query') }}"</strong></p>
+        @endif
         <div class="table-responsive mt-4">
             <table class="table table-striped">
                 <thead>
