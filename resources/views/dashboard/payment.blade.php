@@ -24,20 +24,17 @@
 
     <form action="#" method="POST">
         <div class="form-check mb-2">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onclick="showContent('content1')" checked />
-            <label class="form-check-label" for="flexRadioDefault1">
-                Medios de pagos tradicionales
-            </label>
-        </div>
-        <div class="form-check mb-2">
-            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onclick="showContent('content2')" />
+            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onclick="showContent('content2')" checked />
             <label class="form-check-label" for="flexRadioDefault2">
-                Por número de cuenta bancaria
+                Métodos tradicionales
+                <span class="d-block text-info">
+                    *Esto hará que llegue sus datos de cuenta por correo con el comprobante de pedido.
+                </span>
             </label>
         </div>
         <div class="row">
             <div class="col-lg-6">
-                <div id="content2" class="content ps-5" style="display: none;">
+                <div id="content2" class="content ps-5">
                     <div class="mb-1">
                         <label for="nombre" class="form-label">Banco</label>
                         <select class="form-select" aria-label="Default select example">
@@ -58,8 +55,12 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="formGroupExampleInput" class="form-label">Número de cuenta bancaria</label>
-                        <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Ej: 98898988874" />
+                        <label for="numBank" class="form-label">Número de cuenta bancaria</label>
+                        <input type="text" class="form-control" id="numBank" placeholder="Ej: 98898988874" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="nomTitular" class="form-label">Nombre titular de la cuenta</label>
+                        <input type="text" class="form-control" id="nomTitular" placeholder="Ej: 98898988874" />
                     </div>
                 </div>
             </div>
