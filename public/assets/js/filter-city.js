@@ -5,6 +5,9 @@ document.addEventListener('DOMContentLoaded', function () {
     const ciudadesSelect = document.getElementById('ciudades');
     const todasLasCiudades = Array.from(ciudadesSelect.querySelectorAll('option'));
 
+    // Deshabilitar el select de ciudades inicialmente
+    ciudadesSelect.disabled = true;
+
     departamentosSelect.addEventListener('change', function () {
         const departamentoId = this.value;
         console.log("Departamento seleccionado:", departamentoId);
@@ -25,6 +28,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 option.textContent = ciudad.textContent;
                 ciudadesSelect.appendChild(option);
             });
+
+            // Habilitar el select de ciudades
+            ciudadesSelect.disabled = false;
+        } else {
+            // Si no se selecciona un departamento, deshabilitar el select de ciudades
+            ciudadesSelect.disabled = true;
         }
     });
 });
