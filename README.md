@@ -32,10 +32,12 @@ CustomShopPro utiliza una base de datos estructurada con múltiples tablas y rel
 - **PHP**: v 8.3
 - **Node JS**: v 20.10
 - **Composer**: v 2.7.8
+- **Phpmyadmin**: Para gestionar la BD ya sea manualmente o usando SQL.
 - **Blade**: Manejo del front-end.
 - **Javascript**: Javascript vanilla, sin framework, para funciones mínimas como toggle y/o tabs.
 - **Ajax**: Se implementó para la funcionalidad de que las ciudades carguen con respecto al departamento seleccionado.
 - **CSS**: Estilos en cascada (no sass) para estilizar el CMS.
+
 ### Próximos Pasos
 - **Configurar Productos**: Agregar la funcionalidad de creación de productos.
 - **Integración de Métodos de Pago**: Añadir soporte para diversas pasarelas de pago.
