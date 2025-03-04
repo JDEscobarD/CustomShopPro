@@ -16,7 +16,8 @@ CustomShopPro es una plataforma de comercio electrónico diseñada para tiendas 
 - **Carga de Imágenes**: Integración de una galería de imágenes para productos.
 
 ### Base de Datos
-CustomShopPro utiliza una base de datos estructurada con múltiples tablas y relaciones para gestionar:
+CustomShopPro utiliza una base de datos estructurada con múltiples tablas y relaciones para gestionar.
+**Hasta ahora las tablas en la base de datos creadas y en funcionamientos son:**
 - **Usuarios**: Información y autenticación de clientes.
 - **Categorías**: Organización de los productos por tipo.
 - **Roles**: Tipo de usuarios que tendrá el CMS.
