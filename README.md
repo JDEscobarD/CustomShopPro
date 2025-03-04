@@ -18,17 +18,20 @@ CustomShopPro es una plataforma de comercio electrónico diseñada para tiendas 
 ### Base de Datos
 CustomShopPro utiliza una base de datos estructurada con múltiples tablas y relaciones para gestionar:
 - **Usuarios**: Información y autenticación de clientes.
-- **Productos**: Detalles, precios y configuraciones de productos compuestos.
 - **Categorías**: Organización de los productos por tipo.
-- **Pedidos**: Registro de compras realizadas por los clientes.
-- **Facturación y Envíos**: Gestión de pagos y logística de entrega.
+- **Roles**: Tipo de usuarios que tendrá el CMS.
+- **Ciudades/Departamentos**: Departamentos y ciudades(algunas) de Colombia.
+- **Tipo de documento**: Documentos permitidos por el CMS.
+- **Medios de pago**: Almacena los bancos y tipos de cuenta.
+- **Productos**: 'en construcción'.
+
 
 ### Desarrollo
 - **Framework**: Laravel 11.
-- **Autenticación**: Basada en una tabla personalizada de usuarios sin utilizar las predeterminadas de Laravel.
-- **Carga Dinámica de Ciudades**: Implementada con `pluck` y LaravelCollective.
-- **Gestión de Contraseñas**: Actualmente en texto plano (pendiente de mejorar seguridad con `bcrypt`).
-- **Interfaz de Usuario**: Diseñada para facilitar la navegación y personalización de productos.
+- **Blade**: Manejo del front-end.
+- **Javascript**: Javascript vanilla, sin framework, para funciones mínimas como toggle y/o tabs.
+- **Ajax**: Se implementó para la funcionalidad de que las ciudades carguen con respecto al departamento seleccionado.
+- **CSS**: Estilos en cascada (no sass) para estilizar el CMS.
 
 ### Próximos Pasos
 - **Configurar Productos**: Agregar la funcionalidad de creación de productos.
