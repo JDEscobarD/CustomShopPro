@@ -31,7 +31,6 @@ CustomShopPro utiliza una base de datos estructurada con múltiples tablas y rel
 - **Interfaz de Usuario**: Diseñada para facilitar la navegación y personalización de productos.
 
 ### Próximos Pasos
-- **Implementar papeleras**: Implementar papeleras de reciclaje para usuarios y categorias, y poder recuperar los archivos eliminados.
 - **Configurar Productos**: Agregar la funcionalidad de creación de productos.
 - **Integración de Métodos de Pago**: Añadir soporte para diversas pasarelas de pago.
 
