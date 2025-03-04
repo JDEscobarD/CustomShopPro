@@ -23,7 +23,7 @@ CustomShopPro utiliza una base de datos estructurada con múltiples tablas y rel
 - **Ciudades/Departamentos**: Departamentos y ciudades(algunas) de Colombia.
 - **Tipo de documento**: Documentos permitidos por el CMS.
 - **Medios de pago**: Almacena los bancos y tipos de cuenta.
-- **Productos**: 'en construcción'.
+- **Productos**: ´en construcción´.
 
 
 ### Desarrollo
