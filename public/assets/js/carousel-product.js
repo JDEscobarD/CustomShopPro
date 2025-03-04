@@ -1,7 +1,6 @@
 const thumbnails = document.querySelectorAll('.thumbnail-carousel .thumbnail');
 const carousel = document.querySelector('#carouselProduct');
 
-//clase active en las miniaturas
 function updateActiveThumbnail(index) {
     thumbnails.forEach((thumbnail, i) => {
         if (i === index) {
@@ -24,5 +23,4 @@ carousel.addEventListener('slid.bs.carousel', (event) => {
     updateActiveThumbnail(activeIndex);
 });
 
-//inicializar la clase active en la primera miniatura
 updateActiveThumbnail(0);

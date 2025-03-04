@@ -14,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
         toggleMenuButton.classList.toggle("close", isOpen);
     });
 
-    //cerrar menú al hacer clic en el backdrop
     menuBackdrop.addEventListener("click", function () {
         contentMenu.classList.remove("open");
         menuBackdrop.classList.remove("active");

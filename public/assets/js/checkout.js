@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     const differentAddressCheck = document.getElementById('differentAddressCheck');
-    const sameAddressRadio = document.getElementById('flexCheckDefault'); // El radio de "Misma dirección de facturación"
+    const sameAddressRadio = document.getElementById('flexCheckDefault');
     const extraFields = document.getElementById('extraFields');
     const pagarButton = document.querySelector('.btn-primary');
     const bancariaRadio = document.getElementById('bancaria');

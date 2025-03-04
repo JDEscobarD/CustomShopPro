@@ -23,7 +23,6 @@ document.getElementById("applyFilter").addEventListener("click", function () {
         }
     });
 
-    //reorganizar las filas
     tbody.innerHTML = "";
     rows.forEach(row => tbody.appendChild(row));
 });
@@ -32,10 +31,8 @@ document.getElementById("resetFilter").addEventListener("click", function () {
     const table = document.getElementById("productTable");
     const tbody = table.querySelector("tbody");
 
-    //restaurar el orden original
     tbody.innerHTML = "";
     originalRows.forEach(row => tbody.appendChild(row));
 
-    //resetear el selector de filtro
     document.getElementById("orderFilter").value = "1";
 });

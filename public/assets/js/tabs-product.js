@@ -17,6 +17,5 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    // Mostrar el contenido de la primera pestaña por defecto
     document.querySelector(".nav-link.active").click();
 });

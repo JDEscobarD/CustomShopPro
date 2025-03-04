@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const validateTokenForm = document.getElementById('validateTokenForm');
     const validateTokenButton = document.getElementById('validateTokenButton');
 
-    // Enviar el formulario inicial
     form.addEventListener('submit', function (e) {
         e.preventDefault();
 
@@ -19,9 +18,8 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Actualiza el valor del campo email en el modal
                     modalEmailInput.value = form.querySelector('input[name="email"]').value;
-                    modal.show(); // Mostrar el modal después de enviar el correo
+                    modal.show();
                 } else {
                     alert('Error al enviar el correo.');
                 }
@@ -31,9 +29,8 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     });
 
-    // Enviar el formulario de validación del token al hacer clic en el botón
     validateTokenButton.addEventListener('click', function (e) {
-        e.preventDefault(); // Evita el comportamiento predeterminado del botón
+        e.preventDefault();
 
         fetch(validateTokenForm.action, {
             method: 'POST',
@@ -45,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function () {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    // Redirigir a la URL proporcionada por el controlador
                     window.location.href = data.redirect;
                 } else {
                     alert(data.message || 'Error al validar el token.');
@@ -56,9 +52,8 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     });
 
-    // Enviar el formulario de validación del token al presionar Enter
     validateTokenForm.addEventListener('submit', function (e) {
-        e.preventDefault(); // Evita el envío tradicional del formulario
+        e.preventDefault();
 
         fetch(validateTokenForm.action, {
             method: 'POST',
@@ -69,8 +64,7 @@ document.addEventListener('DOMContentLoaded', function () {
         })
             .then(response => response.json())
             .then(data => {
-                if (data.success) {
-                    // Redirigir a la URL proporcionada por el controlador
+                if (data.success) {                    
                     window.location.href = data.redirect;
                 } else {
                     alert(data.message || 'Error al validar el token.');

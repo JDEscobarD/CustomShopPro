@@ -11,11 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     
     function showContent(contentId) {
-        //ocultar todos los contenidos
         document.querySelectorAll('.content').forEach(function (content) {
             content.style.display = 'none';
         });
-        //mostrar el contenido seleccionado
         document.getElementById(contentId).style.display = 'block';
     }
 });

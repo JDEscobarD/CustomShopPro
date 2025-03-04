@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const batchActionForm = document.getElementById("batchActionForm");
     const confirmDeleteModal = new bootstrap.Modal(document.getElementById("confirmDeleteModal"));
 
-    // Función para actualizar el estado del checkbox maestro
     const updateMasterCheckbox = () => {
         const total = rowCheckboxes.length;
         const checked = Array.from(rowCheckboxes).filter(checkbox => checkbox.checked).length;
@@ -23,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Seleccionar/Deseleccionar todos los checkboxes
     masterCheckbox.addEventListener("change", () => {
         rowCheckboxes.forEach(checkbox => {
             checkbox.checked = masterCheckbox.checked;
@@ -31,12 +29,10 @@ document.addEventListener("DOMContentLoaded", () => {
         updateMasterCheckbox();
     });
 
-    // Actualizar el estado del checkbox maestro cuando cambian los checkboxes individuales
     rowCheckboxes.forEach(checkbox => {
         checkbox.addEventListener("change", updateMasterCheckbox);
     });
 
-    // Manejar el clic en "Aplicar"
     applyActionButton.addEventListener("click", () => {
         const selectedAction = document.querySelector('select[name="action"]').value;
         const selectedIds = Array.from(document.querySelectorAll('input[name="selected_ids[]"]:checked')).map(checkbox => checkbox.value);
