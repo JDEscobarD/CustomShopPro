@@ -5,6 +5,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\PasswordResetController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BankandAccountController;
 
 // Rutas para invitados (no autenticados)
 Route::middleware('guest')->group(function () {
@@ -27,7 +28,7 @@ Route::middleware('guest')->group(function () {
 //Grupo de rutas protegidas para administradores
 Route::middleware(['auth', 'role:admin'])->group(function () {
     //Ruta para el método de pagos
-    Route::view('metodo-pagos', 'dashboard.payment')->name('payment');
+    Route::get('metodo-pagos', [BankandAccountController::class, 'create'])->name('payment');
 
     //Rutas de registro
     Route::get('register', [RegisteredUserController::class, 'create'])->name('register');

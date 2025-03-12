@@ -11,17 +11,12 @@ use App\Http\Requests\Auth\LoginRequest;
 
 class AuthenticatedSessionController extends Controller
 {
-    /**
-     * Display the login view.
-     */
+
     public function create(): View
     {
         return view('auth.login');
     }
 
-    /**
-     * Handle an incoming authentication request.
-     */
     public function store(Request $request)
     {
         $credentials = $request->validate([ 
@@ -32,7 +27,7 @@ class AuthenticatedSessionController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended(route('dashboard')); // Redirección personalizada
+            return redirect()->intended(route('dashboard'));
         }
 
         return back()->withErrors([
@@ -41,9 +36,6 @@ class AuthenticatedSessionController extends Controller
     }
 
 
-    /**
-     * Destroy an authenticated session.
-     */
     public function destroy(Request $request): RedirectResponse
     {
         Auth::guard('web')->logout();

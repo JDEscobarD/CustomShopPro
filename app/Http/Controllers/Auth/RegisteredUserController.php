@@ -18,12 +18,9 @@ use Illuminate\View\View;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     */
+
     public function create()
     {
-        // Obtener los datos necesarios para los formularios
         $departamentos = Departamento::all();
         $ciudades = Ciudad::all();
         $roles = Rol::all();
@@ -33,8 +30,6 @@ class RegisteredUserController extends Controller
     }
 
     /**
-     * Handle an incoming registration request.
-     *
      * @throws \Illuminate\Validation\ValidationException
      */
     
@@ -53,7 +48,6 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        // Crear el nuevo usuario
         $user = User::create([
             'nombreUs' => $request->nombreUs,
             'apellidosUs' => $request->apellidosUs,

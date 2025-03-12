@@ -10,8 +10,6 @@ class Modal extends Component
     public $title;
 
     /**
-     * Create a new component instance.
-     *
      * @return void
      */
     public function __construct($id, $title)
@@ -21,8 +19,6 @@ class Modal extends Component
     }
 
     /**
-     * Get the view / contents that represent the component.
-     *
      * @return \Illuminate\View\View|string
      */
     public function render()

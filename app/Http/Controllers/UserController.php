@@ -11,10 +11,6 @@ use App\Models\TipoDocumento;
 
 class UserController extends Controller
 {
-    /**
-     * Editar y actualizar usuario
-     */
-
     public function edit($id)
     {
         $user = User::findOrFail($id);
@@ -28,7 +24,7 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        // dd($request->all());
+        //dd($request->all());
 
         $request->validate([
             'nombreUs' => ['required', 'string', 'max:255'],
@@ -61,7 +57,6 @@ class UserController extends Controller
         return redirect()->route('users');
     }
 
-    // Método para eliminar un usuario (soft delete)
     public function destroy($id)
     {
         $user = User::findOrFail($id);
@@ -71,7 +66,6 @@ class UserController extends Controller
         return redirect()->route('users');
     }
 
-    // Obtener solo usuarios eliminados
     public function papelera()
     {
         $usuarios = User::onlyTrashed()->get();
@@ -79,7 +73,6 @@ class UserController extends Controller
         return view('dashbaord.trash.user', compact('usuarios'));
     }
 
-    // Restaurar un usuario eliminado
     public function restore($id)
     {
         $user = User::onlyTrashed()->findOrFail($id);

@@ -8,4 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TipoCuentaBanco extends Model
 {
     use HasFactory;
+
+    protected $table = 'tipos_cuentas_bancos';
+    protected $fillable = ['tipo_cuenta'];
 }

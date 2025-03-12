@@ -9,7 +9,7 @@ class Ciudad extends Model
 {
     use HasFactory;
 
-    protected $table = 'ciudades'; // Nombre de la tabla en la base de datos
+    protected $table = 'ciudades';
 
     protected $fillable = ['nombre', 'departamento_id'];
 

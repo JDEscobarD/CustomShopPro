@@ -13,9 +13,7 @@ class CategoryController extends Controller
         return view('dashboard.new-category');
     }
 
-    /**
-     * Guarda una nueva categoría en la base de datos.
-     */
+
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -50,7 +48,6 @@ class CategoryController extends Controller
         return redirect()->route('categories');
     }
 
-    // Método para eliminar un usuario (soft delete)
     public function destroy($id)
     {
         $category = Category::findOrFail($id);

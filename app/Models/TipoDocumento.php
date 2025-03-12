@@ -9,13 +9,12 @@ class TipoDocumento extends Model
 {
     use HasFactory;
 
-    protected $table = 'tipo_documento'; //nombre de la tabla
-
+    protected $table = 'tipo_documento';
     protected $fillable = ['nombre'];
 
     public function usuarios()
     {
-        return $this->hasMany(User::class, 'tipo_documento_id'); //acá va la columna en la tabla que se almacenará
+        return $this->hasMany(User::class, 'tipo_documento_id');//acá va la columna en la tabla que se almacenará
     }
 }
 

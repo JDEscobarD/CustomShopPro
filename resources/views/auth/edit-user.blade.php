@@ -74,7 +74,7 @@
                             <select class="form-select @error('departamento_id') is-invalid @enderror" id="departamentos" name="departamento_id">
                                 <option value="" selected disabled>Seleccione...</option>
                                 @foreach ($departamentos as $departamento)
-                                <option value="{{ $departamento->id }}" {{ old('departamento_id') == $departamento->id ? 'selected' : '' }}>
+                                <option value="{{ $departamento->id }}" {{ $departamento->departamento_id == $departamento->id ? 'selected' : '' }}>
                                     {{ $departamento->nombre }}
                                 </option>
                                 @endforeach

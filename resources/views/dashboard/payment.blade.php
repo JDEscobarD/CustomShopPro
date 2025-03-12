@@ -22,7 +22,7 @@
         </div>
     </div>
 
-    <form action="#" method="POST">
+    <form action="" method="POST">
         <div class="form-check mb-2">
             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onclick="showContent('content2')" checked />
             <label class="form-check-label" for="flexRadioDefault2">
@@ -37,21 +37,20 @@
                 <div id="content2" class="content ps-5">
                     <div class="mb-1">
                         <label for="nombre" class="form-label">Banco</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected disabled>Seleccione</option>
-                            <option value="1">Bancolombia</option>
-                            <option value="2">Davivienda</option>
-                            <option value="3">Banco BBVA</option>
-                            <option value="3">Banco Agrario</option>
+                        <select class="form-select" name="bank_id" id="bankList" required>
+                            <option value="" selected disabled>Seleccione...</option>
+                            @foreach($banks as $bank)
+                                <option value="{{ $bank->id }}">{{ $bank->nombre_banco }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-1">
                         <label for="nombre" class="form-label">Tipo de cuenta</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected disabled>Seleccione</option>
-                            <option value="1">Ahorros</option>
-                            <option value="2">Corriente</option>
-                            <option value="3">Nómina</option>
+                        <select class="form-select" name="tipoCuenta" aria-label="Default select example">
+                            <option selected disabled>Seleccione...</option>
+                            @foreach($tipoCuentas as $tipoCuenta)
+                                <option value="{{ $tipoCuenta->id }}">{{ $tipoCuenta->tipo_cuenta }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-3">
@@ -60,7 +59,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="nomTitular" class="form-label">Nombre titular de la cuenta</label>
-                        <input type="text" class="form-control" id="nomTitular" placeholder="Ej: 98898988874" />
+                        <input type="text" class="form-control" id="nomTitular" placeholder="Ej: Juan Pérez" />
                     </div>
                 </div>
             </div>

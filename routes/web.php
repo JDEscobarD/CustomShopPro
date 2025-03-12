@@ -29,7 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/ciudades/{departamento}', [CiudadController::class, 'getCiudadesByDepartamento']);
     //Logout
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
 });
 
 //Incluir rutas de autenticación
 require __DIR__ . '/auth.php';
+
