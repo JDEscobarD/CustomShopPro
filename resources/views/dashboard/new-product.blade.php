@@ -75,10 +75,9 @@
                         <label for="descripcion" class="form-label">Categoría</label>
                         <select class="form-select" aria-label="Default select example">
                             <option value="1" selected disabled>Seleccione</option>
-                            <option value="2">Montaña</option>
-                            <option value="3">Enduro</option>
-                            <option value="4">BMX</option>
-                            <option value="5">Accesorios</option>
+                            @foreach ($listCategories as $category )
+                                <option value="{{$category->id}}">{{$category->nombre}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-3">

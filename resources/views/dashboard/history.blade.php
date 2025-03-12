@@ -23,10 +23,9 @@
                 <label for="categories" class="form-label">Filtrar</label>
                 <select class="form-select" name="categories" aria-label="Default select example">
                     <option selected disabled>Categoria</option>
-                    <option value="1">Montaña</option>
-                    <option value="2">Enduro</option>
-                    <option value="3">BMX</option>
-                    <option value="4">Accesorios</option>
+                    @foreach ($listCategories as $category )
+                        <option value="{{$category->id}}">{{$category->nombre}}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="col-lg-2 mb-3">
