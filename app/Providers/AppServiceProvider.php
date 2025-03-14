@@ -22,12 +22,14 @@ class AppServiceProvider extends ServiceProvider
         Paginator::useBootstrap();
 
         //categorías en vistas específicas
-        View::composer(
-            ['dashboard.new-product', 'dashboard.edit-product', 'dashboard.products', 'dashboard.history'],
-            function ($view) {
+        View::composer(['dashboard.new-product', 'dashboard.edit-product', 'dashboard.products', 'dashboard.history'], function ($view) {
                 $listCategories = Category::orderBy('nombre')->get();
                 $view->with('listCategories', $listCategories);
             }
         );
+
+        //si se pone compleja la cosa entonces activar estas lineas
+        // $listCategories = Category::orderBy('nombre')->get();
+        // View::share('listCategories', $listCategories);
     }
 }
