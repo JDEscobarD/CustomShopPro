@@ -52,7 +52,11 @@
                     </li>
                 </ul>
                 <div class="composed-section py-4">
-                    @include('dashboard.compuesto.compuesto')
+                    @include('dashboard.compuesto.precio')
+                    @include('dashboard.compuesto.atributos')
+                    @include('dashboard.compuesto.composicion')
+                    @include('dashboard.compuesto.envio')
+                    @include('dashboard.compuesto.galeria')
                 </div>
             </div>
             <div class="col-lg-3">
@@ -117,7 +121,9 @@
 </x-modal>
 
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
 <script src="{{ asset('assets/js/tabs-product.js') }}" defer></script>
 <script src="{{ asset('assets/js/thumbnail-product.js') }}" defer></script>
+<script src="{{asset('assets/js/composicion.js')}}" defer></script>
 
 @endsection
