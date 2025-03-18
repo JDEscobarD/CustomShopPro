@@ -21,34 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return value ? "$ " + Number(value).toLocaleString("es-CO") : "$ 0";
     }
 
-    // Manejo de atributos dinámicos en la sección general
-    document.getElementById("add-attribute").addEventListener("click", function (e) {
-        e.preventDefault();
-        let container = document.getElementById("attributes");
-        let newAttribute = document.createElement("div");
-        newAttribute.classList.add("row", "mb-2");
-        newAttribute.innerHTML = `
-            <div class="col-md-6">
-                <label>Nombre del atributo:</label>
-                <input type="text" class="form-control" placeholder="Nombre">
-            </div>
-            <div class="col-md-6">
-                <label>Descripción:</label>
-                <input type="text" class="form-control" placeholder="Descripción">
-            </div>
-            <div class="col-md-12">
-                <button class="btn btn-danger remove-attribute">Eliminar</button>
-            </div>
-        `;
-        container.appendChild(newAttribute);
 
-        // Agregar funcionalidad de eliminar
-        newAttribute.querySelector(".remove-attribute").addEventListener("click", function () {
-            if (confirm("¿Está seguro de eliminar este atributo?")) {
-                newAttribute.remove();
-            }
-        });
-    });
 
     // Manejo de opciones en Composición
     document.getElementById("composicion").addEventListener("click", function (e) {

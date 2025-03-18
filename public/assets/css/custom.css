@@ -637,6 +637,26 @@ textarea.form-control {
     border: 0 !important;
 }
 
+/* Composición */
+.card-attribute, .card-component{
+    background-color: #F1F1F1;
+    padding: 15px;
+    border-radius: 10px;
+}
+.delete-attribute{
+    width: 25px;
+    height: 25px;
+    border-radius: 100%;
+    background-color: #FF3B30;
+    background-image: url(../media/icons/bx-x-white.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 115%;
+}
+.delete-attribute:hover{
+    background-color: #b41d15;
+}
+
 /* Media Query */
 
 @media (max-width: 768px){

@@ -39,7 +39,7 @@
                         <a class="nav-link active" data-tab="price" href="#">Precio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" data-tab="atribute" href="#">Atributos</a>
+                        <a class="nav-link" data-tab="attribute" href="#">Atributos</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" data-tab="composed" href="#">Composición</a>
@@ -64,15 +64,17 @@
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Compuesto</label>
                         <select class="form-select" aria-label="Default select example">
-                            <option value="1" selected>No</option>
-                            <option value="2">Sí</option>
+                            @foreach ( $listOptions as $listOption )
+                            <option value="{{$listOption->id}}">{{$listOption->opcion}}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Tipo</label>
                         <select class="form-select" aria-label="Default select example">
-                            <option value="1" selected>Físico</option>
-                            <option value="2">Digital</option>
+                            @foreach ( $formats as $format )
+                            <option value="{{$format->id}}">{{$format->formato}}</option>                                
+                            @endforeach
                         </select>
                     </div>
                     <div class="mb-3">
@@ -80,13 +82,13 @@
                         <select class="form-select" aria-label="Default select example">
                             <option value="1" selected disabled>Seleccione</option>
                             @foreach ($listCategories as $category )
-                                <option value="{{$category->id}}">{{$category->nombre}}</option>
+                            <option value="{{$category->id}}">{{$category->nombre}}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="nombre" class="form-label">Unidades disponibles</label>
-                        <input type="number" class="form-control" id="nombre" name="nombre" placeholder="0">
+                        <input type="number" class="form-control" pattern="[0-9]+" id="nombre" name="nombre" placeholder="0">
                     </div>
                     <div class="mb-3">
                         <div class="upload-file">
@@ -124,6 +126,6 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
 <script src="{{ asset('assets/js/tabs-product.js') }}" defer></script>
 <script src="{{ asset('assets/js/thumbnail-product.js') }}" defer></script>
-<script src="{{asset('assets/js/composicion.js')}}" defer></script>
+<script src="{{asset('assets/js/compositions/composicion.js')}}" defer></script>
 
 @endsection

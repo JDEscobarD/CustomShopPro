@@ -2,10 +2,13 @@
 
 namespace App\Providers;
 
+use App\Models\Category;
+use App\Models\CompositionType;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
-use App\Models\Category;
+use App\Models\Format;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,17 +22,19 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //paginador bootstrap
-        Paginator::useBootstrap();
+        Paginator::useBootstrap();        
 
-        //categorías en vistas específicas
-        View::composer(['dashboard.new-product', 'dashboard.edit-product', 'dashboard.products', 'dashboard.history'], function ($view) {
-                $listCategories = Category::orderBy('nombre')->get();
-                $view->with('listCategories', $listCategories);
+        //Carga la lista de categorías en cualquier pantalla donde sean llamadas
+        $listCategories = Category::orderBy('nombre')->get();
+        View::share('listCategories', $listCategories);
+
+        //Carga de tablas menores para la construcción de los productos
+        View::composer(['dashboard.new-product'], function ($view) {
+                $compositionTypes = CompositionType::orderBy('opcion')->get();
+                $formats = Format::orderBy('formato')->get()->reverse();
+                $view->with('listOptions', $compositionTypes)
+                     ->with('formats', $formats);
             }
         );
-
-        //si se pone compleja la cosa entonces activar estas lineas
-        // $listCategories = Category::orderBy('nombre')->get();
-        // View::share('listCategories', $listCategories);
     }
 }
