@@ -21,7 +21,7 @@
             </div>
         </div>
     </div>
-
+        
     <form action="" method="POST">
         <div class="form-check mb-2">
             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" onclick="showContent('content2')" checked />
@@ -35,7 +35,7 @@
         <div class="row">
             <div class="col-lg-6">
                 <div id="content2" class="content ps-5">
-                    <div class="mb-1">
+                    <div class="mb-3">
                         <label for="nombre" class="form-label">Banco</label>
                         <select class="form-select" name="bank_id" id="bankList" required>
                             <option value="" selected disabled>Seleccione...</option>
@@ -44,7 +44,7 @@
                             @endforeach
                         </select>
                     </div>
-                    <div class="mb-1">
+                    <div class="mb-3">
                         <label for="nombre" class="form-label">Tipo de cuenta</label>
                         <select class="form-select" name="tipoCuenta" aria-label="Default select example">
                             <option selected disabled>Seleccione...</option>

@@ -696,6 +696,7 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `banks`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+COMMIT;
 
 --
 -- AUTO_INCREMENT de la tabla `categories`
