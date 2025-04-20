@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 26-03-2025 a las 19:38:50
--- Versión del servidor: 8.0.30
--- Versión de PHP: 8.3.15
+-- Tiempo de generación: 20-04-2025 a las 15:08:47
+-- Versión del servidor: 8.4.3
+-- Versión de PHP: 8.3.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,7 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `banks` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombre_banco` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre_banco` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -72,8 +72,8 @@ INSERT INTO `banks` (`id`, `nombre_banco`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `cache` (
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -84,8 +84,8 @@ CREATE TABLE `cache` (
 --
 
 CREATE TABLE `cache_locks` (
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -97,8 +97,8 @@ CREATE TABLE `cache_locks` (
 
 CREATE TABLE `categories` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `descripcion` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -115,12 +115,14 @@ INSERT INTO `categories` (`id`, `nombre`, `descripcion`, `created_at`, `updated_
 (5, 'SILLINES', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget dui varius risus venenatis gravida.', '2025-01-27 05:58:09', '2025-01-27 05:58:09', NULL),
 (6, 'TRANSMISION', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget dui varius risus venenatis gravida.', '2025-01-27 06:01:47', '2025-01-27 06:01:47', NULL),
 (7, 'PIÑONES', 'Editado nuevamente.', '2025-01-27 06:02:01', '2025-02-21 00:15:25', NULL),
-(8, 'BIELA', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget dui varius risus venenatis gravida.', '2025-01-27 06:09:14', '2025-01-27 06:09:14', NULL),
+(8, 'BIELA', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. N.', '2025-01-27 06:09:14', '2025-04-17 03:09:32', NULL),
 (9, 'TIJERAS', 'Componente que conecta la rueda delantera con el cuadro de la bicicleta y permite el control de la dirección.', '2025-01-27 06:09:48', '2025-01-30 21:06:07', NULL),
 (10, 'BUJES', 'Lorem ipsum dolor sit amet.', '2025-01-27 06:10:02', '2025-01-31 00:05:41', NULL),
 (11, 'PLATOS', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget dui varius risus venenatis gravida.', '2025-01-27 06:10:33', '2025-01-27 06:10:33', NULL),
 (12, 'FRENOS', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam eget dui varius risus venenatis gravida.', '2025-01-27 06:10:54', '2025-01-27 06:10:54', NULL),
-(13, 'AMORTIGUADORES', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '2025-01-30 19:18:11', '2025-02-24 21:02:51', NULL);
+(13, 'AMORTIGUADORES', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.', '2025-01-30 19:18:11', '2025-02-24 21:02:51', NULL),
+(23, 'test 1', 'asdasdasdasd', '2025-04-17 03:09:53', '2025-04-17 03:10:08', '2025-04-17 03:10:08'),
+(24, 'test 2', 'asasdasdasdasd', '2025-04-17 03:10:00', '2025-04-17 03:10:08', '2025-04-17 03:10:08');
 
 -- --------------------------------------------------------
 
@@ -130,7 +132,7 @@ INSERT INTO `categories` (`id`, `nombre`, `descripcion`, `created_at`, `updated_
 
 CREATE TABLE `ciudades` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `departamento_id` bigint UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -246,7 +248,7 @@ INSERT INTO `ciudades` (`id`, `nombre`, `departamento_id`, `created_at`, `update
 
 CREATE TABLE `composition_options` (
   `id` bigint UNSIGNED NOT NULL,
-  `opcion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `opcion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -267,7 +269,7 @@ INSERT INTO `composition_options` (`id`, `opcion`, `created_at`, `updated_at`) V
 
 CREATE TABLE `departamentos` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombre` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -318,11 +320,11 @@ INSERT INTO `departamentos` (`id`, `nombre`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE `failed_jobs` (
   `id` bigint UNSIGNED NOT NULL,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -334,7 +336,7 @@ CREATE TABLE `failed_jobs` (
 
 CREATE TABLE `formats` (
   `id` bigint UNSIGNED NOT NULL,
-  `formato` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `formato` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -355,8 +357,8 @@ INSERT INTO `formats` (`id`, `formato`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE `jobs` (
   `id` bigint UNSIGNED NOT NULL,
-  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `attempts` tinyint UNSIGNED NOT NULL,
   `reserved_at` int UNSIGNED DEFAULT NULL,
   `available_at` int UNSIGNED NOT NULL,
@@ -370,13 +372,13 @@ CREATE TABLE `jobs` (
 --
 
 CREATE TABLE `job_batches` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `total_jobs` int NOT NULL,
   `pending_jobs` int NOT NULL,
   `failed_jobs` int NOT NULL,
-  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `options` mediumtext COLLATE utf8mb4_unicode_ci,
+  `failed_job_ids` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `cancelled_at` int DEFAULT NULL,
   `created_at` int NOT NULL,
   `finished_at` int DEFAULT NULL
@@ -390,7 +392,7 @@ CREATE TABLE `job_batches` (
 
 CREATE TABLE `migrations` (
   `id` int UNSIGNED NOT NULL,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -420,8 +422,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -430,8 +432,93 @@ CREATE TABLE `password_reset_tokens` (
 --
 
 INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
-('admin@example.com', '$2y$12$4HKk.N7y24omqzFjKcWe.umDgq0Az6K1GxhwFSYcGcXeaWPj73eSm', '2025-03-19 05:59:50'),
+('admin@example.com', '$2y$12$Jc/Emtc1z3FAgyEFB9JwrO.CukmuNYl2GvvZVq9MmpOnPON510YQS', '2025-04-20 19:37:34'),
 ('julio@example.com', '$2y$12$sSTcTjdQ7Y9aG1MK7bwiFeQVVKn/vLRExhvj/evUpDZXbqQUOFtkO', '2025-02-21 00:09:59');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `products`
+--
+
+CREATE TABLE `products` (
+  `id` bigint UNSIGNED NOT NULL,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` text COLLATE utf8mb4_unicode_ci,
+  `precio_regular` decimal(10,2) NOT NULL,
+  `precio_oferta` decimal(10,2) DEFAULT NULL,
+  `composition_option_id` bigint UNSIGNED NOT NULL,
+  `format_id` bigint UNSIGNED NOT NULL,
+  `category_id` bigint UNSIGNED NOT NULL,
+  `unidades_disponibles` int NOT NULL DEFAULT '0',
+  `imagen_portada` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `product_attributes`
+--
+
+CREATE TABLE `product_attributes` (
+  `id` bigint UNSIGNED NOT NULL,
+  `product_id` bigint UNSIGNED NOT NULL,
+  `nombre` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descripcion` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `product_compositions`
+--
+
+CREATE TABLE `product_compositions` (
+  `id` bigint UNSIGNED NOT NULL,
+  `product_id` bigint UNSIGNED NOT NULL,
+  `nombre_campo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category_id` bigint UNSIGNED NOT NULL,
+  `articulo_id` bigint UNSIGNED NOT NULL,
+  `precio_adicional` decimal(10,2) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `product_gallery`
+--
+
+CREATE TABLE `product_gallery` (
+  `id` bigint UNSIGNED NOT NULL,
+  `product_id` bigint UNSIGNED NOT NULL,
+  `imagen_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `orden` int DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `product_shipping`
+--
+
+CREATE TABLE `product_shipping` (
+  `id` bigint UNSIGNED NOT NULL,
+  `product_id` bigint UNSIGNED NOT NULL,
+  `envio_gratis` tinyint(1) NOT NULL DEFAULT '0',
+  `costo_envio` decimal(10,2) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -441,7 +528,7 @@ INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
 
 CREATE TABLE `rol` (
   `id` bigint UNSIGNED NOT NULL,
-  `rol` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `rol` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -461,11 +548,11 @@ INSERT INTO `rol` (`id`, `rol`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `sessions` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint UNSIGNED DEFAULT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_ci,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_activity` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -474,12 +561,8 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('0c3FQvrvxkjrtm8Z0o84gtgpeJZzihhgbl0T5H5N', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZHZJZXBvQ2o0ckM1YUdkdElqQ0M0UmVQdWVvODdPdzhiOGtDSVU1dSI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjI1OiJodHRwOi8vY3VzdG9tc2hvcHByby50ZXN0Ijt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9', 1742316436),
-('g1J3m7Db9IHlRjvDR8K3gH4JP23GRezYv8l1gJVU', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiaW9TTUprcmg4MGhvREtqY09EZWUxVW5wcWVhQ0hFS0RsM3UzdFQ5bSI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czozNToiaHR0cDovL2N1c3RvbXNob3Bwcm8udGVzdC9wcm9kdWN0b3MiO31zOjk6Il9wcmV2aW91cyI7YToxOntzOjM6InVybCI7czozMToiaHR0cDovL2N1c3RvbXNob3Bwcm8udGVzdC9sb2dpbiI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=', 1742331840),
-('n2ucNmIIY1jvgJnpSBON4tHMHhk7Mt6YNQsm57qD', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiQzRWanVuRHlFY1loQnJpeTdlNkRYVWpnT3VTS0c5alN3cjNTVnBtRCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQwOiJodHRwOi8vY3VzdG9tc2hvcHByby50ZXN0L251ZXZvLXByb2R1Y3RvIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9', 1742316339),
-('rK07LCNNo8kqJ6HnyI538bvqudu5u1P0dM4hln8r', NULL, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiZ0NUSlN5cHZYbFREc20wampzVVc1UjFsT0pwVjdlSll3ZWpuYk5ZTSI7czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyNToiaHR0cDovL2N1c3RvbXNob3Bwcm8udGVzdCI7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjMxOiJodHRwOi8vY3VzdG9tc2hvcHByby50ZXN0L2xvZ2luIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==', 1742346041),
-('U0lexQZcdbgLEKuWldtFVY2AAw8EAVAL4YfdrLYe', 5, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36 Edg/134.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiSUUzWTV0ZHdsZHdoWndNWmdzYXk2Umlja3BmVVhTWUN2RGhjWTU5OCI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQwOiJodHRwOi8vY3VzdG9tc2hvcHByby50ZXN0L251ZXZvLXByb2R1Y3RvIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6NTt9', 1741989973),
-('uztEAOajbDqUKBPn1pTaqjhMeARde4V99MKxyBX2', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:136.0) Gecko/20100101 Firefox/136.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiZk9xUk1OVThxdHk3YmRodU5MR04yZjdrWlhuaDJtRmtKRkNHaVB6biI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM2OiJodHRwOi8vY3VzdG9tc2hvcHByby50ZXN0L2NhdGVnb3JpYXMiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO30=', 1741799740);
+('cqcNwpKLpePIYgEL8dxZMOJ5EpB4OR5cXcc8Wr1W', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiMmFrUTk2UHp2NU5hRlNCcUQ5MjkySnpDaXFBa3huenZ5T0RRbEh2VyI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM4OiJodHRwOi8vY3VzdG9tc2hvcHByby50ZXN0L21ldG9kby1wYWdvcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7fQ==', 1744842422),
+('X1Mw6AAk0oTTRHk33OYbxrhnHG3ZAwubh8StScUO', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibnhwVTkzVEdiYWlyMFNpb0U0Y1poM0hqWXZkUURsZzBTdlZ6TWVIQSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQwOiJodHRwOi8vY3VzdG9tc2hvcHByby50ZXN0L251ZXZvLXByb2R1Y3RvIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9', 1745159928);
 
 -- --------------------------------------------------------
 
@@ -489,7 +572,7 @@ INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, 
 
 CREATE TABLE `tipos_cuentas_bancos` (
   `id` bigint UNSIGNED NOT NULL,
-  `tipo_cuenta` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tipo_cuenta` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -511,7 +594,7 @@ INSERT INTO `tipos_cuentas_bancos` (`id`, `tipo_cuenta`, `created_at`, `updated_
 
 CREATE TABLE `tipo_documento` (
   `id` bigint UNSIGNED NOT NULL,
-  `tipoDocu` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL
+  `tipoDocu` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -532,18 +615,18 @@ INSERT INTO `tipo_documento` (`id`, `tipoDocu`) VALUES
 
 CREATE TABLE `usuarios` (
   `id` bigint UNSIGNED NOT NULL,
-  `nombreUs` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `apellidosUs` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nombreUs` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `apellidosUs` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `tipo_documento_id` bigint UNSIGNED NOT NULL,
-  `numDocu` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `numDocu` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `departamento_id` bigint UNSIGNED NOT NULL,
   `ciudad_id` bigint UNSIGNED NOT NULL,
-  `direccion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `direccion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `rol_id` bigint UNSIGNED NOT NULL,
-  `telefono` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `telefono` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
@@ -653,6 +736,44 @@ ALTER TABLE `password_reset_tokens`
   ADD PRIMARY KEY (`email`);
 
 --
+-- Indices de la tabla `products`
+--
+ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `products_composition_option_id_foreign` (`composition_option_id`),
+  ADD KEY `products_format_id_foreign` (`format_id`),
+  ADD KEY `products_category_id_foreign` (`category_id`);
+
+--
+-- Indices de la tabla `product_attributes`
+--
+ALTER TABLE `product_attributes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_attributes_product_id_foreign` (`product_id`);
+
+--
+-- Indices de la tabla `product_compositions`
+--
+ALTER TABLE `product_compositions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_compositions_product_id_foreign` (`product_id`),
+  ADD KEY `product_compositions_category_id_foreign` (`category_id`);
+
+--
+-- Indices de la tabla `product_gallery`
+--
+ALTER TABLE `product_gallery`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_gallery_product_id_foreign` (`product_id`);
+
+--
+-- Indices de la tabla `product_shipping`
+--
+ALTER TABLE `product_shipping`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `product_shipping_product_id_foreign` (`product_id`);
+
+--
 -- Indices de la tabla `rol`
 --
 ALTER TABLE `rol`
@@ -696,13 +817,12 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `banks`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
-COMMIT;
 
 --
 -- AUTO_INCREMENT de la tabla `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT de la tabla `ciudades`
@@ -747,6 +867,36 @@ ALTER TABLE `migrations`
   MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
+-- AUTO_INCREMENT de la tabla `products`
+--
+ALTER TABLE `products`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `product_attributes`
+--
+ALTER TABLE `product_attributes`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `product_compositions`
+--
+ALTER TABLE `product_compositions`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `product_gallery`
+--
+ALTER TABLE `product_gallery`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT de la tabla `product_shipping`
+--
+ALTER TABLE `product_shipping`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `rol`
 --
 ALTER TABLE `rol`
@@ -779,6 +929,39 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `ciudades`
   ADD CONSTRAINT `ciudades_departamento_id_foreign` FOREIGN KEY (`departamento_id`) REFERENCES `departamentos` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  ADD CONSTRAINT `products_composition_option_id_foreign` FOREIGN KEY (`composition_option_id`) REFERENCES `composition_options` (`id`),
+  ADD CONSTRAINT `products_format_id_foreign` FOREIGN KEY (`format_id`) REFERENCES `formats` (`id`);
+
+--
+-- Filtros para la tabla `product_attributes`
+--
+ALTER TABLE `product_attributes`
+  ADD CONSTRAINT `product_attributes_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `product_compositions`
+--
+ALTER TABLE `product_compositions`
+  ADD CONSTRAINT `product_compositions_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
+  ADD CONSTRAINT `product_compositions_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `product_gallery`
+--
+ALTER TABLE `product_gallery`
+  ADD CONSTRAINT `product_gallery_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+
+--
+-- Filtros para la tabla `product_shipping`
+--
+ALTER TABLE `product_shipping`
+  ADD CONSTRAINT `product_shipping_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `usuarios`
