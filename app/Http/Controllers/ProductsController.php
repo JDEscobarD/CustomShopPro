@@ -11,16 +11,21 @@ use App\Models\Format;
 
 class ProductsController extends Controller
 {
+    public function index()
+    {
+        return view('dashboard.products');
+    }
+
     public function create()
     {
         $categories = Category::orderBy('nombre')->get();
-        $compositionOptions = CompositionType::orderBy('opcion')->get();
+        $listOptions = CompositionType::orderBy('opcion')->get();
         $formats = Format::orderBy('formato')->get();
         $listCategories = Category::orderBy('nombre')->get();
         
         return view('dashboard.new-product', compact(
             'categories', 
-            'compositionOptions',
+            'listOptions',
             'formats',
             'listCategories'
         ));
@@ -28,25 +33,26 @@ class ProductsController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all()); // PARA DEPURAR POR SI HAY ALGÚN ERROR
+
         $validationRules = [
             'nombre' => 'required|string|max:255',
             'descripcion' => 'nullable|string',
             'precio_regular' => 'required|numeric|min:0',
             'precio_oferta' => 'nullable|numeric|min:0',
-            'composition_option_id' => 'required|exists:composition_options,id',
+            'composition_option_id' => 'required|exists:composition_types,id',
             'format_id' => 'required|exists:formats,id',
             'category_id' => 'required|exists:categories,id',
             'unidades_disponibles' => 'nullable|integer|min:0',
             'url' => 'nullable|url',
             'imagen_portada' => 'nullable|image|max:3000',
-            'gallery.*' => 'nullable|image|max:3000',
+            'gallery.*' => 'nullable|image|max:5000',
             'attributes.*.nombre' => 'nullable|string',
             'attributes.*.descripcion' => 'nullable|string',
             'envio_gratis' => 'nullable|boolean',
             'costo_envio' => 'nullable|numeric|min:0'
         ];
     
-        // Solo validar campos de composición si no es "NO" (ID 2)
         if ($request->composition_option_id != 2) {
             $validationRules['compositions.*.nombre_campo'] = 'nullable|string';
             $validationRules['compositions.*.category_id'] = 'nullable|exists:categories,id';
@@ -61,14 +67,14 @@ class ProductsController extends Controller
 
             $product = Product::create($validated);
 
-            // Manejo de relaciones en métodos separados
             $this->handleAttributes($product, $request);
             $this->handleCompositions($product, $request);
             $this->handleShipping($product, $request);
             $this->handleGallery($product, $request);
 
             DB::commit();
-            return redirect()->route('products.index')->with('success', 'Producto creado');
+
+            return redirect()->route('new-product')->with('success', '¡Producto creado exitosamente!');
         } catch (\Exception $e) {
             DB::rollBack();
             return back()->with('error', 'Error: ' . $e->getMessage())->withInput();
@@ -89,7 +95,7 @@ class ProductsController extends Controller
 
     private function handleCompositions(Product $product, Request $request)
     {
-        if ($request->composition_option_id != 2 && $request->has('compositions')) { // Cambia 2 por el ID real de "NO"
+        if ($request->composition_option_id != 2 && $request->has('compositions')) { 
             foreach ($request->input('compositions') as $composition) {
                 $product->compositions()->create([
                     'nombre_campo' => $composition['nombre_campo'],
@@ -119,7 +125,10 @@ class ProductsController extends Controller
         if ($request->hasFile('gallery')) {
             foreach ($request->file('gallery') as $image) {
                 $path = $image->store('products/gallery', 'public');
-                $product->gallery()->create(['image_path' => $path]);
+                $product->gallery()->create([
+                    'imagen_url' => $path,
+                    'orden' => 0
+                ]);
             }
         }
     }

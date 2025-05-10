@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 10-05-2025 a las 15:31:52
+-- Tiempo de generación: 10-05-2025 a las 17:05:16
 -- Versión del servidor: 8.4.3
 -- Versión de PHP: 8.3.16
 
@@ -243,27 +243,6 @@ INSERT INTO `ciudades` (`id`, `nombre`, `departamento_id`, `created_at`, `update
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `composition_options`
---
-
-CREATE TABLE `composition_options` (
-  `id` bigint UNSIGNED NOT NULL,
-  `opcion` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Volcado de datos para la tabla `composition_options`
---
-
-INSERT INTO `composition_options` (`id`, `opcion`, `created_at`, `updated_at`) VALUES
-(1, 'Si', '2025-03-18 15:35:28', '2025-03-18 15:35:28'),
-(2, 'No', '2025-03-18 15:35:28', '2025-03-18 15:35:28');
-
--- --------------------------------------------------------
-
---
 -- Estructura de tabla para la tabla `composition_types`
 --
 
@@ -273,6 +252,14 @@ CREATE TABLE `composition_types` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Volcado de datos para la tabla `composition_types`
+--
+
+INSERT INTO `composition_types` (`id`, `opcion`, `created_at`, `updated_at`) VALUES
+(1, 'Sí', NULL, NULL),
+(2, 'No', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -575,7 +562,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('2FP5Teg3qHVdkA0AQkpdUf2OaP99z3lpM9YxEzEr', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoienB4U3NJTGZlVWF5Snh1SDZNYzlRMGlrbDJCc1k3SE5HdDM1TGd0NSI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQwOiJodHRwOi8vY3VzdG9tc2hvcHByby50ZXN0L251ZXZvLXByb2R1Y3RvIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9', 1746891027);
+('2FP5Teg3qHVdkA0AQkpdUf2OaP99z3lpM9YxEzEr', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoienB4U3NJTGZlVWF5Snh1SDZNYzlRMGlrbDJCc1k3SE5HdDM1TGd0NSI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQwOiJodHRwOi8vY3VzdG9tc2hvcHByby50ZXN0L251ZXZvLXByb2R1Y3RvIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9', 1746896545);
 
 -- --------------------------------------------------------
 
@@ -696,12 +683,6 @@ ALTER TABLE `categories`
 ALTER TABLE `ciudades`
   ADD PRIMARY KEY (`id`),
   ADD KEY `ciudades_departamento_id_foreign` (`departamento_id`);
-
---
--- Indices de la tabla `composition_options`
---
-ALTER TABLE `composition_options`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indices de la tabla `composition_types`
@@ -850,16 +831,10 @@ ALTER TABLE `ciudades`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=97;
 
 --
--- AUTO_INCREMENT de la tabla `composition_options`
---
-ALTER TABLE `composition_options`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT de la tabla `composition_types`
 --
 ALTER TABLE `composition_types`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `departamentos`
@@ -895,13 +870,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT de la tabla `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `product_attributes`
 --
 ALTER TABLE `product_attributes`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `product_compositions`
@@ -919,7 +894,7 @@ ALTER TABLE `product_galleries`
 -- AUTO_INCREMENT de la tabla `product_shippings`
 --
 ALTER TABLE `product_shippings`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `rol`

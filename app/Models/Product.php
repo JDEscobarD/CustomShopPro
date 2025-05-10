@@ -23,7 +23,7 @@ class Product extends Model
         'url'
     ];
 
-    // Relationships
+    // Relaciones
     public function category()
     {
         return $this->belongsTo(Category::class);

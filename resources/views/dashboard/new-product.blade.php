@@ -2,6 +2,21 @@
 
 @section('content')
 <div class="container-fluid">
+    {{-- Bloque para mostrar mensajes de sesión --}}
+    @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    @if (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            {{ session('error') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <div class="header-body-content pb-2 mb-4">
         <div class="row align-item-center">
             <div class="col-lg-6 mb-3">
@@ -70,7 +85,7 @@
                     <div class="mb-3">
                         <label for="composition_option_id" class="form-label">Compuesto <span class="text-danger">*</span></label>
                         <select class="form-select @error('composition_option_id') is-invalid @enderror" name="composition_option_id" id="composition_option_id" aria-label="Default select example" required>
-                            @foreach ( $listOptions as $listOption )
+                            @foreach ( $listOptions as $listOption ) {{-- Changed back to $listOptions --}}
                             <option value="{{$listOption->id}}">{{$listOption->opcion}}</option>
                             @endforeach
                         </select>
@@ -139,6 +154,15 @@
 
 
 <!--Llamado de componentes modales para los respectivos mensajes-->
+@if (session('success'))
+    <x-modal id="successModal" title="¡Éxito!">
+        <p>{{ session('success') }}</p>
+        <x-slot name="footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Cerrar</button>
+        </x-slot>
+    </x-modal>
+@endif
+
 <x-modal id="clearFieldModal" title="¡Advertencia!">
     <p>Cambios cancelados. <br> El formulario se ha restablecido.</p>
     @slot('footer')

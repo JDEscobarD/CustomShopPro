@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['dashboard.new-product'], function ($view) {
                 $compositionTypes = CompositionType::orderBy('opcion')->get();
                 $formats = Format::orderBy('formato')->get()->reverse();
-                $view->with('listOptions', $compositionTypes)
+                $view->with('listOptions', $compositionTypes) // Provides data as 'listOptions'
                      ->with('formats', $formats);
             }
         );

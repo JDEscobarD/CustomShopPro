@@ -4,14 +4,14 @@ use App\Http\Controllers\CiudadController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\ProductsController;
+use App\Http\Controllers\ProductsController; // Asegúrate que este 'use' statement esté al inicio del archivo
 
 //Rutas públicas
 Route::middleware('guest')->group(function () {    
 });
 
 //Rutas autenticadas
-Route::middleware('auth')->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () { // O el grupo de middleware que uses para tu dashboard
     //Rutas para el dashboard
     Route::view('/', 'dashboard.dashboard')->name('dashboard');
     Route::view('productos', 'dashboard.products')->name('products');
@@ -31,6 +31,7 @@ Route::middleware('auth')->group(function () {
     //Logout
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
     Route::post('productos/store', [ProductsController::class, 'store'])->name('products.store');
+    Route::get('/products', [ProductsController::class, 'index'])->name('products.index');
 });
 
 //Incluir rutas de autenticación
