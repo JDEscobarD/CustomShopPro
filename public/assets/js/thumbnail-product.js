@@ -1,4 +1,4 @@
-const fileInput = document.getElementById('formFile');
+const fileInput = document.getElementById('imagen_portada');
 const thumbnailContainer = document.querySelector('.thumbnail-product');
 const thumbnailPreview = document.getElementById('thumbnailPreview');
 const deleteButton = document.getElementById('deleteImageButton');

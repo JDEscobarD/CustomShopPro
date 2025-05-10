@@ -14,24 +14,30 @@
                             <button type="button" class="btn w-100 btn-link red" id="clearFields">Limpiar campos</button>
                         </div>
                         <div class="col-xl-4 col-lg-6 mb-3">
-                            <button type="submit" class="btn w-100 btn-primary">Guardar</button>
+                            <button type="submit" form="productForm" class="btn w-100 btn-primary">Guardar</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <form action="#" method="POST">
+    <form action="{{ route('products.store') }}" method="POST" id="productForm" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <div class="col-lg-9">
                 <div class="mb-3">
-                    <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del producto">
+                    <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control @error('nombre') is-invalid @enderror" id="nombre" name="nombre" placeholder="Nombre del producto" required>
+                    @error('nombre')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="mb-3">
-                    <label for="descripcion" class="form-label">Descripción del producto</label>
-                    <textarea class="form-control" id="descripcion" name="descripcion" rows="4" placeholder="Escriba una descripción."></textarea>
+                    <label for="descripcion" class="form-label">Descripción del producto <span class="text-danger">*</span></label>
+                    <textarea class="form-control @error('descripcion') is-invalid @enderror" id="descripcion" name="descripcion" rows="4" placeholder="Escriba una descripción." required></textarea>
+                    @error('descripcion')
+                    <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
                 </div>
                 <p class="fw-bold my-4">Datos del producto</p>
                 <ul class="nav nav-tabs nav-fill">
@@ -62,39 +68,54 @@
             <div class="col-lg-3">
                 <div class="aditional-settings-prod">
                     <div class="mb-3">
-                        <label for="descripcion" class="form-label">Compuesto</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <label for="composition_option_id" class="form-label">Compuesto <span class="text-danger">*</span></label>
+                        <select class="form-select @error('composition_option_id') is-invalid @enderror" name="composition_option_id" id="composition_option_id" aria-label="Default select example" required>
                             @foreach ( $listOptions as $listOption )
                             <option value="{{$listOption->id}}">{{$listOption->opcion}}</option>
                             @endforeach
                         </select>
+                        @error('composition_option_id')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="descripcion" class="form-label">Tipo</label>
-                        <select class="form-select" aria-label="Default select example">
+                        <label for="format_id" class="form-label">Tipo <span class="text-danger">*</span></label>
+                        <select class="form-select @error('format_id') is-invalid @enderror" name="format_id" id="format_id" aria-label="Default select example" required>
                             @foreach ( $formats as $format )
                             <option value="{{$format->id}}">{{$format->formato}}</option>                                
                             @endforeach
                         </select>
+                        @error('format_id')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="descripcion" class="form-label">Categoría</label>
-                        <select class="form-select" aria-label="Default select example">
-                            <option value="1" selected disabled>Seleccione</option>
+                        <label for="category_id" class="form-label">Categoría <span class="text-danger">*</span></label>
+                        <select class="form-select @error('category_id') is-invalid @enderror" name="category_id" id="category_id" aria-label="Default select example" required>
+                            <option value="" selected disabled>Seleccione</option>
                             @foreach ($listCategories as $category )
                             <option value="{{$category->id}}">{{$category->nombre}}</option>
                             @endforeach
                         </select>
+                        @error('category_id')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="nombre" class="form-label">Unidades disponibles</label>
-                        <input type="number" class="form-control" pattern="[0-9]+" id="nombre" name="nombre" placeholder="0">
+                        <label for="unidades_disponibles" class="form-label">Unidades disponibles <span class="text-danger">*</span></label>
+                        <input type="number" class="form-control @error('unidades_disponibles') is-invalid @enderror" pattern="[0-9]+" id="unidades_disponibles" name="unidades_disponibles" placeholder="0" required>
+                        @error('unidades_disponibles')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="mb-3">
                         <div class="upload-file">
                             <div class="front-page">
-                                <label for="formFile" class="form-label">Suba su imagen de portada</label>
-                                <input class="form-control" type="file" id="formFile" accept="image/*">
+                                <label for="imagen_portada" class="form-label">Suba su imagen de portada <span class="text-danger">*</span></label>
+                                <input class="form-control @error('imagen_portada') is-invalid @enderror" type="file" id="imagen_portada" name="imagen_portada" accept="image/*" required>
+                                @error('imagen_portada')
+                                <span class="invalid-feedback">{{ $message }}</span>
+                                @enderror
                                 <div class="thumbnail-product d-none">
                                     <button type="button" id="deleteImageButton">Eliminar</button>
                                     <img id="thumbnailPreview" alt="Vista previa" />
@@ -103,8 +124,11 @@
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label for="nombre" class="form-label d-flex justify-content-between"><span>URL</span> <span>Vista previa</span></label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="https://">
+                        <label for="url" class="form-label d-flex justify-content-between"><span>URL <span class="text-danger">*</span></span> <span>Vista previa</span></label>
+                        <input type="text" class="form-control @error('url') is-invalid @enderror" id="url" name="url" placeholder="https://" required>
+                        @error('url')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
             </div>
@@ -123,9 +147,8 @@
 </x-modal>
 
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
 <script src="{{ asset('assets/js/tabs-product.js') }}" defer></script>
 <script src="{{ asset('assets/js/thumbnail-product.js') }}" defer></script>
-<script src="{{asset('assets/js/compositions/composicion.js')}}" defer></script>
+<script src="{{ asset('assets/js/composition-tab-control.js') }}" defer></script>
 
 @endsection

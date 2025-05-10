@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost:3306
--- Tiempo de generación: 20-04-2025 a las 15:08:47
+-- Tiempo de generación: 10-05-2025 a las 15:31:52
 -- Versión del servidor: 8.4.3
 -- Versión de PHP: 8.3.16
 
@@ -264,6 +264,19 @@ INSERT INTO `composition_options` (`id`, `opcion`, `created_at`, `updated_at`) V
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `composition_types`
+--
+
+CREATE TABLE `composition_types` (
+  `id` bigint UNSIGNED NOT NULL,
+  `opcion` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `departamentos`
 --
 
@@ -413,7 +426,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (15, '2025_03_02_174532_create_banks_table', 7),
 (16, '2025_03_02_174756_create_tipo_cuenta_banco_table', 8),
 (17, '2025_03_18_133852_create_formats', 9),
-(18, '2025_03_18_141751_create_compostion_options', 10);
+(18, '2025_03_18_141751_create_compostion_options', 10),
+(19, '2025_05_10_151705_create_product_management_tables', 11);
 
 -- --------------------------------------------------------
 
@@ -432,7 +446,7 @@ CREATE TABLE `password_reset_tokens` (
 --
 
 INSERT INTO `password_reset_tokens` (`email`, `token`, `created_at`) VALUES
-('admin@example.com', '$2y$12$Jc/Emtc1z3FAgyEFB9JwrO.CukmuNYl2GvvZVq9MmpOnPON510YQS', '2025-04-20 19:37:34'),
+('admin@example.com', '$2y$12$uo5cVVE0AbuuwH3yG9WZsOM7oLD/2XpU0VQYeWevM48DQ0U/w4AMW', '2025-04-24 01:22:01'),
 ('julio@example.com', '$2y$12$sSTcTjdQ7Y9aG1MK7bwiFeQVVKn/vLRExhvj/evUpDZXbqQUOFtkO', '2025-02-21 00:09:59');
 
 -- --------------------------------------------------------
@@ -453,9 +467,9 @@ CREATE TABLE `products` (
   `unidades_disponibles` int NOT NULL DEFAULT '0',
   `imagen_portada` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `url` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `deleted_at` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -483,9 +497,9 @@ CREATE TABLE `product_compositions` (
   `id` bigint UNSIGNED NOT NULL,
   `product_id` bigint UNSIGNED NOT NULL,
   `nombre_campo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `category_id` bigint UNSIGNED NOT NULL,
-  `articulo_id` bigint UNSIGNED NOT NULL,
-  `precio_adicional` decimal(10,2) DEFAULT NULL,
+  `category_id` bigint UNSIGNED DEFAULT NULL,
+  `articulo_id` bigint UNSIGNED DEFAULT NULL,
+  `precio_adicional` decimal(10,2) NOT NULL DEFAULT '0.00',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -493,14 +507,14 @@ CREATE TABLE `product_compositions` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `product_gallery`
+-- Estructura de tabla para la tabla `product_galleries`
 --
 
-CREATE TABLE `product_gallery` (
+CREATE TABLE `product_galleries` (
   `id` bigint UNSIGNED NOT NULL,
   `product_id` bigint UNSIGNED NOT NULL,
   `imagen_url` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `orden` int DEFAULT '0',
+  `orden` int NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -508,10 +522,10 @@ CREATE TABLE `product_gallery` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `product_shipping`
+-- Estructura de tabla para la tabla `product_shippings`
 --
 
-CREATE TABLE `product_shipping` (
+CREATE TABLE `product_shippings` (
   `id` bigint UNSIGNED NOT NULL,
   `product_id` bigint UNSIGNED NOT NULL,
   `envio_gratis` tinyint(1) NOT NULL DEFAULT '0',
@@ -561,8 +575,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('cqcNwpKLpePIYgEL8dxZMOJ5EpB4OR5cXcc8Wr1W', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoiMmFrUTk2UHp2NU5hRlNCcUQ5MjkySnpDaXFBa3huenZ5T0RRbEh2VyI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjM4OiJodHRwOi8vY3VzdG9tc2hvcHByby50ZXN0L21ldG9kby1wYWdvcyI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjI7fQ==', 1744842422),
-('X1Mw6AAk0oTTRHk33OYbxrhnHG3ZAwubh8StScUO', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/135.0.0.0 Safari/537.36 Edg/135.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoibnhwVTkzVEdiYWlyMFNpb0U0Y1poM0hqWXZkUURsZzBTdlZ6TWVIQSI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQwOiJodHRwOi8vY3VzdG9tc2hvcHByby50ZXN0L251ZXZvLXByb2R1Y3RvIjt9czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9', 1745159928);
+('2FP5Teg3qHVdkA0AQkpdUf2OaP99z3lpM9YxEzEr', 2, '127.0.0.1', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Safari/537.36 Edg/136.0.0.0', 'YTo1OntzOjY6Il90b2tlbiI7czo0MDoienB4U3NJTGZlVWF5Snh1SDZNYzlRMGlrbDJCc1k3SE5HdDM1TGd0NSI7czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjQwOiJodHRwOi8vY3VzdG9tc2hvcHByby50ZXN0L251ZXZvLXByb2R1Y3RvIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6Mjt9', 1746891027);
 
 -- --------------------------------------------------------
 
@@ -691,6 +704,12 @@ ALTER TABLE `composition_options`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indices de la tabla `composition_types`
+--
+ALTER TABLE `composition_types`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indices de la tabla `departamentos`
 --
 ALTER TABLE `departamentos`
@@ -760,18 +779,18 @@ ALTER TABLE `product_compositions`
   ADD KEY `product_compositions_category_id_foreign` (`category_id`);
 
 --
--- Indices de la tabla `product_gallery`
+-- Indices de la tabla `product_galleries`
 --
-ALTER TABLE `product_gallery`
+ALTER TABLE `product_galleries`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `product_gallery_product_id_foreign` (`product_id`);
+  ADD KEY `product_galleries_product_id_foreign` (`product_id`);
 
 --
--- Indices de la tabla `product_shipping`
+-- Indices de la tabla `product_shippings`
 --
-ALTER TABLE `product_shipping`
+ALTER TABLE `product_shippings`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `product_shipping_product_id_foreign` (`product_id`);
+  ADD KEY `product_shippings_product_id_foreign` (`product_id`);
 
 --
 -- Indices de la tabla `rol`
@@ -837,6 +856,12 @@ ALTER TABLE `composition_options`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT de la tabla `composition_types`
+--
+ALTER TABLE `composition_types`
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `departamentos`
 --
 ALTER TABLE `departamentos`
@@ -864,7 +889,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT de la tabla `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `products`
@@ -885,15 +910,15 @@ ALTER TABLE `product_compositions`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `product_gallery`
+-- AUTO_INCREMENT de la tabla `product_galleries`
 --
-ALTER TABLE `product_gallery`
+ALTER TABLE `product_galleries`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `product_shipping`
+-- AUTO_INCREMENT de la tabla `product_shippings`
 --
-ALTER TABLE `product_shipping`
+ALTER TABLE `product_shippings`
   MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -935,33 +960,33 @@ ALTER TABLE `ciudades`
 --
 ALTER TABLE `products`
   ADD CONSTRAINT `products_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  ADD CONSTRAINT `products_composition_option_id_foreign` FOREIGN KEY (`composition_option_id`) REFERENCES `composition_options` (`id`),
+  ADD CONSTRAINT `products_composition_option_id_foreign` FOREIGN KEY (`composition_option_id`) REFERENCES `composition_types` (`id`),
   ADD CONSTRAINT `products_format_id_foreign` FOREIGN KEY (`format_id`) REFERENCES `formats` (`id`);
 
 --
 -- Filtros para la tabla `product_attributes`
 --
 ALTER TABLE `product_attributes`
-  ADD CONSTRAINT `product_attributes_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `product_attributes_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 --
 -- Filtros para la tabla `product_compositions`
 --
 ALTER TABLE `product_compositions`
   ADD CONSTRAINT `product_compositions_category_id_foreign` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
-  ADD CONSTRAINT `product_compositions_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `product_compositions_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 --
--- Filtros para la tabla `product_gallery`
+-- Filtros para la tabla `product_galleries`
 --
-ALTER TABLE `product_gallery`
-  ADD CONSTRAINT `product_gallery_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+ALTER TABLE `product_galleries`
+  ADD CONSTRAINT `product_galleries_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 --
--- Filtros para la tabla `product_shipping`
+-- Filtros para la tabla `product_shippings`
 --
-ALTER TABLE `product_shipping`
-  ADD CONSTRAINT `product_shipping_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE CASCADE;
+ALTER TABLE `product_shippings`
+  ADD CONSTRAINT `product_shippings_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`);
 
 --
 -- Filtros para la tabla `usuarios`

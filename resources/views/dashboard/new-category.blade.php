@@ -21,7 +21,6 @@
             </div>
         </div>
     </div>
-    <!-- Archivo de vista: resources/views/dashboard/new-category.blade.php -->
     <form action="{{ route('categories.store') }}" method="POST" id="categoryForm">
         @csrf
         <div class="mb-3">

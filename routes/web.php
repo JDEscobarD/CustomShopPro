@@ -4,6 +4,7 @@ use App\Http\Controllers\CiudadController;
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\ProductsController;
 
 //Rutas públicas
 Route::middleware('guest')->group(function () {    
@@ -29,7 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/ciudades/{departamento}', [CiudadController::class, 'getCiudadesByDepartamento']);
     //Logout
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
-
+    Route::post('productos/store', [ProductsController::class, 'store'])->name('products.store');
 });
 
 //Incluir rutas de autenticación

@@ -164,5 +164,40 @@ return [
     'uppercase'            => 'El campo :attribute debe estar en mayúscula.',
     'url'                  => 'El campo :attribute debe ser una URL válida.',
     'uuid'                 => 'El campo :attribute debe ser un UUID válido.',    
-
+    'attributes' => [
+        'nombre' => 'Nombre del producto',
+        'descripcion' => 'Descripción del producto',
+        'precio_regular' => 'Precio regular',
+        'precio_oferta' => 'Precio en oferta',
+        'composition_option_id' => 'Tipo de composición',
+        'format_id' => 'Formato',
+        'category_id' => 'Categoría',
+        'unidades_disponibles' => 'Unidades disponibles',
+        'imagen_portada' => 'Imagen de portada',
+        'url' => 'URL del producto',
+        
+        // Composition attributes
+        'compositions' => 'Composiciones',
+        'compositions.*.nombre_campo' => 'Nombre del campo de composición',
+        'compositions.*.category_id' => 'Categoría de composición',
+        'compositions.*.articulo_id' => 'Artículo de composición',
+        'compositions.*.precio_adicional' => 'Precio adicional de composición',
+        
+        // Shipping attributes
+        'envio_gratis' => 'Envío gratis',
+        'costo_envio' => 'Costo de envío',
+        
+        // Gallery attributes
+        'gallery' => 'Galería de imágenes',
+        'gallery.*' => 'Imagen de galería',
+    ],
+    'starts_with'          => 'El campo :attribute debe comenzar con uno de los siguientes valores: :values',
+    'string'               => 'El campo :attribute debe ser una cadena de caracteres.',
+    'timezone'             => 'El campo :attribute debe ser una zona horaria válida.',
+    'ulid'                 => 'El campo :attribute debe ser un ULID válido.',
+    'unique'               => 'El campo :attribute ya ha sido registrado.',
+    'uploaded'             => 'Subir :attribute ha fallado.',
+    'uppercase'            => 'El campo :attribute debe estar en mayúscula.',
+    'url'                  => 'El campo :attribute debe ser una URL válida.',
+    'uuid'                 => 'El campo :attribute debe ser un UUID válido.',    
 ];
